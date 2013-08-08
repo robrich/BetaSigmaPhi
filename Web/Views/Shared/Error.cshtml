@@ -1,0 +1,16 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+	ViewBag.Title = "Error";
+	Response.TrySkipIisCustomErrors = true;
+	try {
+		Response.StatusCode = 503;
+	} catch {
+		// FRAGILE: Swallow exception
+		// Can't change status if headers were already sent
+	}
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>An error occurred while processing your request.  Try your request again or contact support.</p>

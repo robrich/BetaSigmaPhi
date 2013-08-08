@@ -1,0 +1,16 @@
+*.sdf
+*.suo
+*.user
+!packages/**/bin
+[Oo]bj
+[Bb]in
+*/**/bin
+*/**/obj
+[Dd]ebug
+[Rr]elsease
+[Tt]humbs.db
+.DS_Store*
+*.[Pp]ublish.xml
+.idea
+*.orig
+web.connection.config

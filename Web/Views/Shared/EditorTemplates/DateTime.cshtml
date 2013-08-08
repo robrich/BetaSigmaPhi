@@ -1,0 +1,2 @@
+﻿@model DateTime?
+@Html.TextBox( "" , (Model != null ? Model.Value.ToString("yyyy-MM-dd hh:mm:ss") : "") , new  { @type = "date" } )

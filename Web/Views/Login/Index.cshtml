@@ -1,0 +1,25 @@
+﻿@model BetaSigmaPhi.Web.Models.LoginModel
+
+@{
+	ViewBag.Title = "Login";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+	@using ( Html.BeginForm() ) {
+		<h3>Login</h3>
+		@Html.LabelFor( m => m.Username )
+		@Html.EditorFor( m => m.Username )
+		@Html.LabelFor( m => m.Password )
+		@Html.EditorFor( m => m.Password )<br />
+		<input type="checkbox" id="RememberMe" name="RememberMe" value="true" checked="@Model.RememberMe" />
+		@Html.LabelFor( m => m.RememberMe )
+		<input type="submit" value="Login" /><br />
+		if ( !string.IsNullOrEmpty( Model.Message ) ) {
+			<div class="error">
+				@Model.Message
+			</div>
+		}
+	 }
+</div>

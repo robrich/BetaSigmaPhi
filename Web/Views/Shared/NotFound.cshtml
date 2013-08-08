@@ -1,0 +1,14 @@
+﻿@{
+	ViewBag.Title = "Not Found";
+	Response.TrySkipIisCustomErrors = true;
+	try {
+		Response.StatusCode = 404;
+	} catch {
+		// FRAGILE: Swallow exception
+		// Can't change status if headers were already sent
+	}
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>This page is not found. HTTP 404.</p>

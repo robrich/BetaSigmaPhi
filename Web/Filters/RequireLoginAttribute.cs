@@ -5,27 +5,27 @@
 	using BetaSigmaPhi.Infrastructure;
 	using BetaSigmaPhi.Repository;
 
-	[AttributeUsage( AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true )]
+	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true, AllowMultiple = true)]
 	public class RequireLoginAttribute : ActionFilterAttribute {
 		private readonly IUserIdentityRepository userIdentityRepository;
 
-		public RequireLoginAttribute( IUserIdentityRepository UserIdentityRepository ) {
-			if ( UserIdentityRepository == null ) {
-				throw new ArgumentNullException( "UserIdentityRepository" );
+		public RequireLoginAttribute(IUserIdentityRepository UserIdentityRepository) {
+			if (UserIdentityRepository == null) {
+				throw new ArgumentNullException("UserIdentityRepository");
 			}
 			this.userIdentityRepository = UserIdentityRepository;
 		}
 
 		public RequireLoginAttribute()
-			: this( ServiceLocator.GetService<IUserIdentityRepository>() ) {
+			: this(ServiceLocator.GetService<IUserIdentityRepository>()) {
 		}
 
-		public override void OnActionExecuting( ActionExecutingContext Context ) {
-			if ( !this.userIdentityRepository.IsAuthenticated() ) {
-				Context.Result = new HttpStatusCodeResult( HttpStatusCode.Unauthorized );
+		public override void OnActionExecuting(ActionExecutingContext Context) {
+			if (!this.userIdentityRepository.IsAuthenticated()) {
+				Context.Result = new RedirectResult("/Login");
 			}
 
-			base.OnActionExecuting( Context );
+			base.OnActionExecuting(Context);
 		}
 
 	}

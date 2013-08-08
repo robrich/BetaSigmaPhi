@@ -14,12 +14,10 @@
     <RootNamespace>BetaSigmaPhi.Web</RootNamespace>
     <AssemblyName>BetaSigmaPhi.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -173,12 +171,12 @@
     <Compile Include="App_Start\FuncControllerFactory.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ErrorLogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MustBeAnAdminController.cs" />
-    <Compile Include="Controllers\SomeApiController.cs" />
-    <Compile Include="Controllers\SomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\HandleAndLogErrorAttribute.cs" />
     <Compile Include="Filters\RequireRoleApiAttribute.cs" />
     <Compile Include="Filters\RequireAdminApiAttribute.cs" />
     <Compile Include="Filters\RequireLoginApiAttribute.cs" />
@@ -191,13 +189,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CurrentUserHelpers.cs" />
+    <Compile Include="Helpers\StringHelpers.cs" />
+    <Compile Include="Models\ErrorLogViewModel.cs" />
+    <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\PartialListPageInfo.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="js\init.js" />
+    <Content Include="js\jquery.log.js" />
     <Content Include="js\modernizr-2.6.2.js" />
     <None Include="js\jquery.validate-vsdoc.js" />
     <Content Include="js\jquery.unobtrusive-ajax.js" />
@@ -242,11 +246,11 @@
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\MustBeAnAdmin\Index.cshtml" />
-    <Content Include="Views\Some\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="js\jquery-2.0.3.min.map" />
+    <Content Include="Views\ErrorLog\Detail.cshtml" />
+    <Content Include="Views\ErrorLog\Index.cshtml" />
     <None Include="Web.connection.config" />
   </ItemGroup>
   <ItemGroup />

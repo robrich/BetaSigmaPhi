@@ -9,7 +9,7 @@ namespace BetaSigmaPhi.Web.Controllers {
 	using BetaSigmaPhi.Web.Filters;
 	using BetaSigmaPhi.Web.Models;
 
-	[RequireLogin]
+	[RequireAdmin]
 	public class UserController : Controller {
 
 		private readonly IUserRepository userRepository;

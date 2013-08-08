@@ -1,7 +1,6 @@
 ﻿namespace BetaSigmaPhi.Service {
 	using System;
 	using BetaSigmaPhi.Entity;
-	using BetaSigmaPhi.Infrastructure;
 	using BetaSigmaPhi.Library;
 	using BetaSigmaPhi.Repository;
 
@@ -13,21 +12,21 @@
 	public class LoginService : ILoginService {
 		private readonly IUserRepository userRepository;
 		private readonly IHashHelper hashHelper;
-		private readonly ISetting setting;
+		private readonly ISettingRepository settingRepository;
 
-		public LoginService( IUserRepository UserRepository, IHashHelper HashHelper, ISetting Setting ) {
+		public LoginService( IUserRepository UserRepository, IHashHelper HashHelper, ISettingRepository SettingRepository ) {
 			if ( UserRepository == null ) {
 				throw new ArgumentNullException( "UserRepository" );
 			}
 			if ( HashHelper == null ) {
 				throw new ArgumentNullException( "HashHelper" );
 			}
-			if ( Setting == null ) {
-				throw new ArgumentNullException( "Setting" );
+			if ( SettingRepository == null ) {
+				throw new ArgumentNullException( "SettingRepository" );
 			}
 			this.userRepository = UserRepository;
 			this.hashHelper = HashHelper;
-			this.setting = Setting;
+			this.settingRepository = SettingRepository;
 		}
 
 		public User ValidateUser( string Email, string Password ) {
@@ -59,13 +58,13 @@
 				throw new ArgumentNullException( "User" );
 			}
 
-			if ( User.LoginFailCount <= this.setting.MaxLoginFailCount ) {
+			if ( User.LoginFailCount <= this.settingRepository.MaxLoginFailCount ) {
 				return false;
 			}
 			if ( User.LoginFailStartDate == null ) {
 				return false;
 			}
-			if ( User.LoginFailStartDate.Value.Add( this.setting.LoginFailWindow ) <= DateTime.Now ) {
+			if ( User.LoginFailStartDate.Value.Add( this.settingRepository.LoginFailWindow ) <= DateTime.Now ) {
 				return false;
 			}
 
@@ -80,7 +79,7 @@
 			if ( string.IsNullOrEmpty( User.Salt ) || string.IsNullOrEmpty( User.Password ) ) {
 				throw new ArgumentNullException( "User", "UserId " + User.UserId + " has a blank password or salt" );
 			}
-			string hashedPass = this.hashHelper.GenerateHash( this.setting.HashType, PasswordFromGui, User.Salt );
+			string hashedPass = this.hashHelper.GenerateHash( this.settingRepository.HashType, PasswordFromGui, User.Salt );
 			return (hashedPass == User.Password);
 		}
 
@@ -97,7 +96,7 @@
 
 		// public for testing, not part of interface
 		public void IncrementFailedCount( User User ) {
-			if ( User.LoginFailStartDate != null && User.LoginFailStartDate.Value.Add( this.setting.LoginFailWindow ) > DateTime.Now ) {
+			if ( User.LoginFailStartDate != null && User.LoginFailStartDate.Value.Add( this.settingRepository.LoginFailWindow ) > DateTime.Now ) {
 				User.LoginFailCount++;
 			} else {
 				User.LoginFailCount = 1;
@@ -107,8 +106,8 @@
 		}
 
 		public void SetPassword( User User, string PasswordFromGui ) {
-			User.Salt = this.hashHelper.GenerateSalt( this.setting.MinSaltLength, this.setting.MaxSaltLength );
-			User.Password = this.hashHelper.GenerateHash( this.setting.HashType, PasswordFromGui, User.Salt );
+			User.Salt = this.hashHelper.GenerateSalt( this.settingRepository.MinSaltLength, this.settingRepository.MaxSaltLength );
+			User.Password = this.hashHelper.GenerateHash( this.settingRepository.HashType, PasswordFromGui, User.Salt );
 		}
 
 		public void SaveEmailPasswordChanges( User User, string EmailFromGui, string PasswordFromGui ) {

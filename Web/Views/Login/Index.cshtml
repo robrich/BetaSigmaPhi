@@ -10,11 +10,11 @@
 	@using ( Html.BeginForm() ) {
 		<h3>Login</h3>
 		@Html.LabelFor( m => m.Username )
-		@Html.EditorFor( m => m.Username )
+		@Html.EditorFor( m => m.Username )<br />
 		@Html.LabelFor( m => m.Password )
 		@Html.EditorFor( m => m.Password )<br />
 		<input type="checkbox" id="RememberMe" name="RememberMe" value="true" checked="@Model.RememberMe" />
-		@Html.LabelFor( m => m.RememberMe )
+		@Html.LabelFor( m => m.RememberMe )<br />
 		<input type="submit" value="Login" /><br />
 		if ( !string.IsNullOrEmpty( Model.Message ) ) {
 			<div class="error">
@@ -23,3 +23,7 @@
 		}
 	 }
 </div>
+
+<p>
+	Initializing a new database?  Look to Service/UserInitializeService.cs for the default user
+</p>

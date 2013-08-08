@@ -19,13 +19,15 @@
 		<header>
 			<div class="content-wrapper">
 				<div class="float-left">
-					<p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+					<p class="site-title">@Html.ActionLink("Beta Sigma Phi", "Index", "Home")</p>
 				</div>
-				<div>
-					@if ( Html.CurrentUserIsAuthenticated() ) { @:Welcome @Html.CurrentUserFirstName() @Html.ActionLink("Logout","Logout","Login")
-					} else { @Html.ActionLink("Login", "Index", "Login")
+				<div class="float-right">
+					@if ( Html.CurrentUserIsAuthenticated() ) {
+						@:Welcome @Html.CurrentUserFirstName() @Html.ActionLink("Logout","Logout","Login")
+					} else {
+						@Html.ActionLink("Login", "Index", "Login")
 					}
-				</div>
+				</div><br />
 				<div class="float-right">
 					<nav>
 						<ul id="menu">
@@ -33,6 +35,7 @@
 							<li>@Html.ActionLink("About", "About", "Home")</li>
 							<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 							<li>@Html.ActionLink("Users", "Index", "User")</li>
+							<li>@Html.ActionLink("Errors", "Index", "ErrorLog")</li>
 						</ul>
 					</nav>
 				</div>
@@ -55,12 +58,6 @@
 			http://www.cdnjs.com/ is the missing CDN
 			http://www.asp.net/ajaxlibrary/CDN.ashx lists MS's CDN content
 		*@
-		<script>
-			Modernizr.load({
-				test: (window.JSON && JSON.stringify && JSON.parse),
-				nope: "//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"
-			});
-		</script>
 		<!--[if lt IE 9]>
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<![endif]-->
@@ -71,17 +68,9 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.js"></script>
 		<script src="/js/jquery.unobtrusive-ajax.min.js"></script>
 		<script src="/js/jquery.validate.unobtrusive.min.js"></script>
-		<script>
-			Modernizr.load({
-				test: Modernizr.input.placeholder,
-				nope: '//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js',
-				complete: function () {
-					if (!Modernizr.input.placeholder) {
-						$('input, textarea').placeholder();
-					}
-				}
-			});
-		</script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+		<script src="/js/jquery.log.js"></script>
+		<script src="/js/init.js"></script>
 		@RenderSection("scripts", required: false)
 	</body>
 </html>

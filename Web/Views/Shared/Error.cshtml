@@ -1,16 +1,19 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
+@model ErrorModel
 
 @{
 	ViewBag.Title = "Error";
-	Response.TrySkipIisCustomErrors = true;
+	// If headers were already sent, it's too late to change them
 	try {
+		Response.TrySkipIisCustomErrors = true;
 		Response.StatusCode = 503;
 	} catch {
-		// FRAGILE: Swallow exception
-		// Can't change status if headers were already sent
 	}
 }
 
-<h2>@ViewBag.Title</h2>
-
-<p>An error occurred while processing your request.  Try your request again or contact support.</p>
+<h1>@ViewBag.Title</h1>
+<p>
+	Sorry, an error occurred while processing your request. Please try your request again or contact support.
+	@if (Model != null && Model.ErrorId != null ) {
+		@: Please reference ErrorId @Model.ErrorId.			
+	}
+</p>

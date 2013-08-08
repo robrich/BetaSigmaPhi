@@ -6,6 +6,7 @@
 	using BetaSigmaPhi.Entity;
 
 	public interface IBetaSigmaPhiContext : IDisposable {
+		IDbSet<ErrorLog> ErrorLogs { get; }
 		IDbSet<User> Users { get; }
 		IDbSet<TEntity> GetTable<TEntity>() where TEntity : IEntity;
 		void DefeatChangeTracking<TEntity>(TEntity Entity) where TEntity : IEntity;
@@ -14,6 +15,7 @@
 
 	public class BetaSigmaPhiContext : DbContext, IBetaSigmaPhiContext {
 
+		public IDbSet<ErrorLog> ErrorLogs { get; set; }
 		public IDbSet<User> Users { get; set; }
 
 		public IDbSet<TEntity> GetTable<TEntity>() where TEntity : IEntity {

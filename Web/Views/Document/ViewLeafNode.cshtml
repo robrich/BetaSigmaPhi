@@ -1,0 +1,26 @@
+﻿@model DocumentLeafViewModel
+
+@{
+	ViewBag.Title = Model.Document.Name;
+}
+
+@section head {
+	@Html.Raw( Model.Document.HeadContent ?? "" )
+}
+@section scripts {
+	@Html.Raw( Model.Document.ScriptContent ?? "" )
+}
+
+<div class="CMS">
+@Html.Partial( "_DocumentBreadCrumb", Model )
+	<article>
+		<h2>@ViewBag.Title</h2>
+		@Html.Raw( Model.Document.PageContent )
+	</article>
+</div>
+
+@if (Html.CurrentUserIsAdmin()) {
+	<ul>
+		<li><a href="@Url.Action("Edit", "DocumentLeaf", new {id = Model.Document.DocumentId})">Edit</a></li>
+	</ul>
+}

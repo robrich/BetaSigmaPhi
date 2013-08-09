@@ -47,6 +47,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="DocumentRepository.cs" />
     <Compile Include="ErrorLogRepository.cs" />
     <Compile Include="Models\PagedList.cs" />
     <Compile Include="Models\ValidationFailure.cs" />

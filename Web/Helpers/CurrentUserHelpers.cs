@@ -9,8 +9,13 @@
 		private static readonly IUserIdentityRepository UserIdentityRepository = ServiceLocator.GetService<IUserIdentityRepository>();
 		private static readonly IUserIdentityService UserIdentityService = ServiceLocator.GetService<IUserIdentityService>();
 
-		public static bool CurrentUserIsAuthenticated( this HtmlHelper HtmlHelper ) {
+		public static bool CurrentUserIsAuthenticated(this HtmlHelper HtmlHelper) {
 			return UserIdentityRepository.IsAuthenticated();
+		}
+
+		public static bool CurrentUserIsAdmin(this HtmlHelper HtmlHelper) {
+			User user = UserIdentityService.GetCurrentUser();
+			return user != null ? user.IsAdmin : false;
 		}
 
 		public static string CurrentUserFirstName( this HtmlHelper HtmlHelper ) {

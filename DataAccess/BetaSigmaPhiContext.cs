@@ -6,6 +6,7 @@
 	using BetaSigmaPhi.Entity;
 
 	public interface IBetaSigmaPhiContext : IDisposable {
+		IDbSet<Document> Documents { get; }
 		IDbSet<ErrorLog> ErrorLogs { get; }
 		IDbSet<User> Users { get; }
 		IDbSet<TEntity> GetTable<TEntity>() where TEntity : IEntity;
@@ -14,7 +15,7 @@
 	}
 
 	public class BetaSigmaPhiContext : DbContext, IBetaSigmaPhiContext {
-
+		public IDbSet<Document> Documents { get; set; }
 		public IDbSet<ErrorLog> ErrorLogs { get; set; }
 		public IDbSet<User> Users { get; set; }
 

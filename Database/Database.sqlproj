@@ -65,5 +65,7 @@
   <ItemGroup>
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\ErrorLog.sql" />
+    <Build Include="dbo\Tables\NodeType.sql" />
+    <Build Include="dbo\Tables\Document.sql" />
   </ItemGroup>
 </Project>

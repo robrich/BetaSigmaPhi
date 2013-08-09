@@ -2,6 +2,8 @@
 	using System.Web.Http;
 	using System.Web.Mvc;
 	using System.Web.Routing;
+	using BetaSigmaPhi.Infrastructure;
+	using BetaSigmaPhi.Web.Filters;
 
 	public static class RouteConfig {
 
@@ -12,6 +14,16 @@
 				name: "Logout",
 				url: "Logout",
 				defaults: new { controller = "Login", action = "Logout" }
+			);
+
+			string pageBasePath = MvcApplication.DOCUMENT_BASE_PATH.Length > 1 ? MvcApplication.DOCUMENT_BASE_PATH.Substring(1) + "/" : "";
+
+			// FRAGILE: If a real controller/view exists and a CMS page exists, the CMS page wins
+			routes.MapRoute(
+				"DocumentView", // Route name
+				pageBasePath + "{*pathInfo}", // URL with parameters
+				new { controller = "Document", action = "Index" }, // Parameter defaults
+				new { pathInfo = ServiceLocator.GetService<DocumentSlugExistsConstraint>(), method = new HttpMethodConstraint(new string[] { "GET" }) } // Constraints
 			);
 
 			routes.MapHttpRoute(

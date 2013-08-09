@@ -1,0 +1,23 @@
+﻿@using BetaSigmaPhi.Web
+@model DocumentBreadcrumbViewModel
+@{
+	if ( Model.PathNodes == null ) {
+		Model.PathNodes = new List<Document>();
+	}
+
+	string pathStep = MvcApplication.DOCUMENT_BASE_PATH;
+	int count = this.Model.PathNodes.Count;
+}
+<div class="bread-crumb">
+	<a id="node-0" href="@Url.Action( "Index", "Home" )"><img src="/img/house.jpg" alt="Home" title="Home" /></a> 
+@for ( int i = 0; i < count; i++ ) {
+	Document node = this.Model.PathNodes[i];
+	pathStep = Html.JoinUrl( pathStep, node.Slug );
+	<text> &gt; </text>
+	if ( i == ( count - 1 ) && !Model.LastNodeIsLink ) {
+		<span id="node-@node.DocumentId" class="bread-current-node @if ( !node.IsActive ) {<text>hidden-node</text>}">@node.Name</span>
+	} else {
+		<a id="node-@node.DocumentId" class="bread-node @if ( !node.IsActive ) {<text>hidden-node</text>}" href="@pathStep">@node.Name</a>
+	}
+}
+</div>

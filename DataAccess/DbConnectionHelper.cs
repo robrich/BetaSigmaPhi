@@ -17,15 +17,19 @@ namespace BetaSigmaPhi.DataAccess {
 				throw new ArgumentNullException( "ConnectionString", "ConnectionString is null" );
 			}
 			string connstr = connObj.ConnectionString;
+			string provider = connObj.ProviderName;
 			if ( string.IsNullOrEmpty( connstr ) ) {
 				throw new ArgumentNullException( "ConnectionString", "ConnectionString is null" );
 			}
 
-			DbProviderFactory factory = DbProviderFactories.GetFactory( connObj.ProviderName );
-			DbConnection conn = factory.CreateConnection();
-			conn.ConnectionString = connstr;
-
-			return conn;
+			DbProviderFactory factory = DbProviderFactories.GetFactory(provider);
+			try {
+				DbConnection conn = factory.CreateConnection();
+				conn.ConnectionString = connstr;
+				return conn;
+			} catch (Exception ex) {
+				throw new Exception(string.Format("Error initializing the connection string \"{0}\", Provider: \"{1}\": {2}", connstr, provider, ex.Message), ex);
+			}
 		}
 
 	}

@@ -1,6 +1,5 @@
 ﻿namespace BetaSigmaPhi.Web.Filters {
 	using System;
-	using System.Net;
 	using System.Web.Mvc;
 	using BetaSigmaPhi.Infrastructure;
 	using BetaSigmaPhi.Repository;

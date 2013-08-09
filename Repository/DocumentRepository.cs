@@ -32,6 +32,9 @@
 		}
 
 		public Document GetNode( int DocumentId, bool ActiveOnly ) {
+			if (DocumentId < 1) {
+				return null; // You asked for nothing, you got it
+			}
 			using ( IBetaSigmaPhiContext db = this.BetaSigmaPhiContextFactory.GetContext() ) {
 				return (
 					from n in db.Documents
@@ -43,7 +46,10 @@
 		}
 
 		public bool NodeExists( int DocumentId, bool ActiveOnly ) {
-			using ( IBetaSigmaPhiContext db = this.BetaSigmaPhiContextFactory.GetContext() ) {
+			if (DocumentId < 1) {
+				return false; // You asked for nothing, you got it
+			}
+			using (IBetaSigmaPhiContext db = this.BetaSigmaPhiContextFactory.GetContext()) {
 				return (
 					from n in db.Documents
 					where n.DocumentId == DocumentId
@@ -97,7 +103,10 @@
 		}
 
 		public List<Document> GetImediateChildren( int DocumentId, bool ActiveOnly ) {
-			using ( IBetaSigmaPhiContext db = this.BetaSigmaPhiContextFactory.GetContext() ) {
+			if (DocumentId < 1) {
+				return new List<Document>(); // You asked for nothing, you got it
+			}
+			using (IBetaSigmaPhiContext db = this.BetaSigmaPhiContextFactory.GetContext()) {
 				return (
 					from n in db.Documents
 					where (n.IsActive || !ActiveOnly)
@@ -110,7 +119,10 @@
 		}
 
 		public string GetNodeIdPath( int DocumentId ) {
-			using ( IBetaSigmaPhiContext db = this.BetaSigmaPhiContextFactory.GetContext() ) {
+			if (DocumentId < 1) {
+				return null; // You asked for nothing, you got it
+			}
+			using (IBetaSigmaPhiContext db = this.BetaSigmaPhiContextFactory.GetContext()) {
 				return (
 					from n in db.Documents
 					where n.DocumentId == DocumentId
@@ -182,6 +194,9 @@
 		}
 
 		public List<Document> GetNodesForDepth( int Depth, bool ActiveOnly ) {
+			if (Depth < 0) {
+				return null; // You asked for nothing, you got it
+			}
 			using ( IBetaSigmaPhiContext db = this.BetaSigmaPhiContextFactory.GetContext() ) {
 				return (
 					from n in db.Documents

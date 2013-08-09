@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Base", "Tests.Base\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Base.Integration", "Tests.Base.Integration\Tests.Base.Integration.csproj", "{3993A19F-EC27-4BB3-A674-5D4BC648EC29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Tests.Integration", "Repository.Tests.Integration\Repository.Tests.Integration.csproj", "{F51AADA2-9AE3-4F9A-A815-709E095DA58A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,10 @@ Global
 		{3993A19F-EC27-4BB3-A674-5D4BC648EC29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3993A19F-EC27-4BB3-A674-5D4BC648EC29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3993A19F-EC27-4BB3-A674-5D4BC648EC29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F51AADA2-9AE3-4F9A-A815-709E095DA58A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F51AADA2-9AE3-4F9A-A815-709E095DA58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F51AADA2-9AE3-4F9A-A815-709E095DA58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F51AADA2-9AE3-4F9A-A815-709E095DA58A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

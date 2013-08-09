@@ -2,13 +2,10 @@ namespace BetaSigmaPhi.TestsBase.Integration {
 	using System;
 	using BetaSigmaPhi.Infrastructure;
 	using DataAccess;
-	using Entity;
-	using Library;
 	using Ninject;
 	using Ninject.Extensions.Conventions;
 	using NUnit.Framework;
 	using System.IO;
-	using Repository;
 
 	[Category("Integration")]
 	[TestFixture]
@@ -36,6 +33,7 @@ namespace BetaSigmaPhi.TestsBase.Integration {
 
 			// Add other bindings as necessary
 			kernel.Rebind<IBetaSigmaPhiContext>().ToMethod(_ => (IBetaSigmaPhiContext)kernel.GetService(typeof(BetaSigmaPhiContext)));
+			this.InitializeOtherTypes(kernel);
 
 			// Initialize the service locator
 			ServiceLocator.Initialize(kernel.GetService);

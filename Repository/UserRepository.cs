@@ -43,6 +43,9 @@
 		}
 
 		public bool EmailAvailable(int UserId, string Email) {
+			if (string.IsNullOrEmpty(Email) || UserId < 1) {
+				return false; // You asked for nothing, you got it
+			}
 			using (IBetaSigmaPhiContext db = this.BetaSigmaPhiContextFactory.GetContext()) {
 				return !(
 					from u in db.Users

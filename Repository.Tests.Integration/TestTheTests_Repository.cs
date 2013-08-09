@@ -3,6 +3,6 @@ namespace BetaSigmaPhi.Repository.Tests.Integration {
 	using NUnit.Framework;
 
 	[TestFixture]
-	public class TestTheTests_Repository : TestTheTests {
+	public class Repository_TestTheTests : TestTheTests {
 	}
 }

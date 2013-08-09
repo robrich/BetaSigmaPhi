@@ -201,6 +201,8 @@
 			SET IDENTITY_INSERT dbo.Document ON
 			*/
 
+			// FRAGILE: The code below doesn't work at all, but the SQL above works just fine
+
 			root = new Document {
 				Depth = 0,
 				NodeType = NodeType.Root,

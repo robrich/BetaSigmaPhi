@@ -5,7 +5,7 @@ namespace BetaSigmaPhi.DataAccess {
 	using System.Data.Common;
 
 	public interface ISqlHelper {
-		T ToValOrNull<T>( object Value );
+		T ToValOrNull<T>(IDataReader Reader, string ColumnName);
 		List<T> ExecuteQuery<T>( string Query, Func<IDataReader, T> Map, List<IDataParameter> Parameters = null, CommandType CommandType = CommandType.StoredProcedure );
 		T ExecuteScalar<T>( string Query, List<IDataParameter> Parameters = null, CommandType CommandType = CommandType.StoredProcedure );
 		int ExecuteNonQuery( string Query, List<IDataParameter> Parameters = null, CommandType CommandType = CommandType.StoredProcedure );
@@ -22,10 +22,15 @@ namespace BetaSigmaPhi.DataAccess {
 		}
 
 		/// <summary>
-		/// A cool helper method that makes <code>reader[&quot;column&quot;] != DBNull.Value ? reader[&quot;column&quot;] : (type)null;</code> more DRY: <code>this.sqlHelper.ToValOrNull&lt;type&gt;(reader[&quot;column&quot;])</code>
+		/// A cool helper method that makes <code>reader[&quot;column&quot;] != DBNull.Value ? reader[&quot;column&quot;] : (type)null;</code> more DRY: <code>this.sqlHelper.ToValOrNull&lt;type&gt;(reader, &quot;column&quot;)</code>
 		/// </summary>
-		public T ToValOrNull<T>( object Value ) {
-			return Value == DBNull.Value ? default( T ) : (T)Value;
+		public T ToValOrNull<T>( IDataReader Reader, string ColumnName ) {
+			object value = Reader[ColumnName];
+			try {
+				return value == DBNull.Value ? default(T) : (T)value;
+			} catch (InvalidCastException ex) {
+				throw new InvalidCastException("Error casting column " + ColumnName + ", value " + value + " to a " + typeof(T).FullName + ": " + ex.Message, ex);
+			}
 		}
 
 		// Public to be testable, not intended for public consumption (thus not part of the interface)

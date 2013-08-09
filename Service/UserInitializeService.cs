@@ -23,7 +23,7 @@
 		}
 
 		public void EnsureAdminExists() {
-			// TODO: Check for existence of admins?
+			// TODO: Check for at least 1 active admin account?
 			if ( !this.userRepository.Any() ) {
 				User user = new User {
 					Email = "admin@example.com",

@@ -46,6 +46,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ErrorLog.cs" />
+    <Compile Include="Helpers\LookupTableAttribute.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Models\CookieInfo.cs" />
     <Compile Include="Models\ExceptionInfo.cs" />

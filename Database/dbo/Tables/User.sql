@@ -4,7 +4,7 @@
     [Email]               NVARCHAR (128) NOT NULL,
     [FirstName]           NVARCHAR (64)  NOT NULL,
     [LastName]            NVARCHAR (64)  NULL,
-    [Password]            NVARCHAR (64)  NOT NULL,
+    [Password]            NVARCHAR (256) NOT NULL,
     [Salt]                NVARCHAR (64)  NOT NULL,
     [LoginFailCount]      INT            NOT NULL,
     [LoginFailStartDate]  DATETIME       NULL,
@@ -15,4 +15,6 @@
     [ModifiedDate]        DATETIME       NOT NULL,
     CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED ([UserId] ASC)
 );
+
+
 

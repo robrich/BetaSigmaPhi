@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -421,11 +421,10 @@
     <Content Include="Views\Document\ViewBranchNode.cshtml" />
     <Content Include="Views\Document\ViewLeafNode.cshtml" />
     <Content Include="Views\Shared\_DocumentBreadCrumb.cshtml" />
-    <None Include="Web.connection.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Web.connection.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
@@ -488,4 +487,10 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  <Target Name="BeforeBuild" Condition=" '$(Configuration)' == 'Release' ">
+    <Copy 
+      SourceFiles="Web.connection.config-release" 
+      DestinationFiles="Web.connection.config">
+    </Copy>
+  </Target>
 </Project>

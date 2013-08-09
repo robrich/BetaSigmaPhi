@@ -88,6 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="BetaSigmaPhi.Entity.Tests.Integration.dll.Release.config">
+      <DependentUpon>App.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Web.connection.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -123,4 +127,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="BeforeBuild" Condition=" '$(Configuration)' == 'Release' ">
+    <Copy 
+      SourceFiles="Web.connection.config-release" 
+      DestinationFiles="Web.connection.config">
+    </Copy>
+  </Target>
 </Project>

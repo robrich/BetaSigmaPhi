@@ -1,0 +1,5 @@
+<connectionStrings>
+	<add name="DefaultConnection" 
+		connectionString="AppHarbor replaces this content" 
+		providerName="System.Data.SqlClient" />
+</connectionStrings>

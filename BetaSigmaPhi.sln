@@ -1,17 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{C829AF24-F3CA-4A22-A8C9-63BA237544E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C8802B7F-5F3F-46F2-9ABB-10A02560249F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{EFE975B9-FE34-4D3F-B796-5DED6267AC85}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{1982E4B6-B676-406A-9916-B421819B5A9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{0E833630-4305-4129-B651-80AE99858DB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C8802B7F-5F3F-46F2-9ABB-10A02560249F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity.Tests", "Entity.Tests\Entity.Tests.csproj", "{8BCA0EE9-770B-4197-8E64-5002DC0747CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity.Tests.Integration", "Entity.Tests.Integration\Entity.Tests.Integration.csproj", "{9603FDCA-4489-48D4-AAD7-EB4FCFA4F272}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{EFE975B9-FE34-4D3F-B796-5DED6267AC85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{C829AF24-F3CA-4A22-A8C9-63BA237544E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{285754A6-94B8-4412-AAF2-0B22E850F377}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Tests.Integration", "Repository.Tests.Integration\Repository.Tests.Integration.csproj", "{F51AADA2-9AE3-4F9A-A815-709E095DA58A}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{7324C2ED-55A5-41C2-A8D1-56D49B7BCFF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Base", "Tests.Base\Tests.Base.csproj", "{BCC1B6C1-3C3A-4CE3-8B7F-EAA71BD1789D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Base.Integration", "Tests.Base.Integration\Tests.Base.Integration.csproj", "{3993A19F-EC27-4BB3-A674-5D4BC648EC29}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{C7016ECA-C690-4803-B4EC-2C09510D19F0}"
 EndProject
@@ -19,18 +31,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		BetaSigmaPhi.scmp = BetaSigmaPhi.scmp
 	EndProjectSection
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{1982E4B6-B676-406A-9916-B421819B5A9D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity.Tests", "Entity.Tests\Entity.Tests.csproj", "{8BCA0EE9-770B-4197-8E64-5002DC0747CA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity.Tests.Integration", "Entity.Tests.Integration\Entity.Tests.Integration.csproj", "{9603FDCA-4489-48D4-AAD7-EB4FCFA4F272}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Base", "Tests.Base\Tests.Base.csproj", "{BCC1B6C1-3C3A-4CE3-8B7F-EAA71BD1789D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Base.Integration", "Tests.Base.Integration\Tests.Base.Integration.csproj", "{3993A19F-EC27-4BB3-A674-5D4BC648EC29}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Tests.Integration", "Repository.Tests.Integration\Repository.Tests.Integration.csproj", "{F51AADA2-9AE3-4F9A-A815-709E095DA58A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -157,6 +157,9 @@
 					select f.PropertyName + ": " + f.ErrorMessage
 				).ToList();
 				if (!validationErrors.IsNullOrEmpty()) {
+					if (exInfo.Data == null) {
+						exInfo.Data = new List<string>();
+					}
 					exInfo.Data.AddRange(validationErrors);
 				}
 			}
@@ -192,6 +195,9 @@
 						// Don't error when trying to error
 					}
 
+					if (exInfo.Data == null) {
+						exInfo.Data = new List<string>();
+					}
 					exInfo.Data.Add(content.ToString());
 				}
 			}

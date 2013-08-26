@@ -1,5 +1,7 @@
 namespace BetaSigmaPhi.TestsBase.Integration {
 	using System;
+	using System.Configuration;
+	using System.Transactions;
 	using BetaSigmaPhi.Infrastructure;
 	using DataAccess;
 	using Ninject;
@@ -10,6 +12,8 @@ namespace BetaSigmaPhi.TestsBase.Integration {
 	[Category("Integration")]
 	[TestFixture]
 	public abstract class IntegrationTestBase {
+
+		private TransactionScope transaction;
 
 		protected ISqlHelper SqlHelper { get; private set; }
 
@@ -40,6 +44,9 @@ namespace BetaSigmaPhi.TestsBase.Integration {
 
 			// Use ServiceLocator sparingly to start us off
 			this.SqlHelper = ServiceLocator.GetService<ISqlHelper>();
+
+			// Start a transaction so we won't persist data changes made during tests
+			this.transaction = new TransactionScope();
 		}
 
 		// Override in tests to initialize other things
@@ -51,13 +58,21 @@ namespace BetaSigmaPhi.TestsBase.Integration {
 		public void ResetDI() {
 			// FRAGILE: There's no way to undo the ServiceLocator: ServiceLocator.Initialize( null );
 			this.SqlHelper = null;
+			this.transaction.Dispose(); // Don't persist data changed during tests
+			// TODO: Reseed tables changed during tests
 		}
 
-		/*
-		We use a test db spun up for this purpose, so we need not:
-		- create a TransactionScope that will avoid persisting the data
-		- reseed tables whose primary key seeds got advanced
-		*/
+		/// <summary>
+		/// FRAGILE: AppHarbor doesn't replace the connectionString in the config files until deployment, so we can't run integration tests as part of AppHarbor builds<br />
+		/// *cough* FAIL *cough*
+		/// </summary>
+		[TestFixtureSetUp]
+		public void IfRunningInAppHarbor() {
+			string environment = ConfigurationManager.AppSettings["Environment"];
+			if (environment == "Test") { 
+				Assert.Ignore("FRAGILE: AppHarbor doesn't replace ConnectionString details until deployment, so we can't run integration tests as part of AppHarbor builds.");
+			}
+		}
 
 	}
 }

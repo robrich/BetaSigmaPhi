@@ -5,8 +5,10 @@
 	using BetaSigmaPhi.Entity;
 	using BetaSigmaPhi.Repository;
 	using BetaSigmaPhi.Service;
+	using BetaSigmaPhi.Web.Filters;
 	using BetaSigmaPhi.Web.Models;
 
+	[RequireLogin]
 	public class DocumentController : Controller {
 		private readonly IDocumentRepository documentRepository;
 		private readonly IDocumentService documentService;

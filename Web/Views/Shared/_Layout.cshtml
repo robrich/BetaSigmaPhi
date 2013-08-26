@@ -32,12 +32,13 @@
 					<nav>
 						<ul id="menu">
 							<li>@Html.ActionLink("Home", "Index", "Home")</li>
-							<li>@Html.ActionLink("About", "About", "Home")</li>
-							<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-							<li>@Html.ActionLink("CMS", "Index", "Document")</li>
+							@if (Html.CurrentUserIsAuthenticated()) {
+								foreach (Document node in Html.DocumentRootMenu()) {
+									 <li><a href="@Html.JoinUrl(MvcApplication.DOCUMENT_BASE_PATH, node.Slug)">@node.Name</a></li>
+								 }
+							}
 							@if (Html.CurrentUserIsAdmin()) {
-								<li>@Html.ActionLink("Users", "Index", "User")</li>
-								<li>@Html.ActionLink("Errors", "Index", "ErrorLog")</li>
+								<li>@Html.ActionLink("Admin", "Index", "Admin")</li>
 							}
 						</ul>
 					</nav>

@@ -173,6 +173,7 @@
     <Compile Include="App_Start\FuncControllerFactory.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DocumentBranchController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\DocumentLeafController.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DocumentHelper.cs" />
     <Compile Include="Helpers\CurrentUserHelpers.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="Helpers\UrlPathHelpers.cs" />
@@ -401,8 +403,6 @@
     <Content Include="img\bullet.png" />
     <Content Include="img\heroAccent.png" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -421,6 +421,7 @@
     <Content Include="Views\Document\ViewBranchNode.cshtml" />
     <Content Include="Views\Document\ViewLeafNode.cshtml" />
     <Content Include="Views\Shared\_DocumentBreadCrumb.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -487,9 +488,7 @@
   <Target Name="AfterBuild">
   </Target> -->
   <Target Name="BeforeBuild" Condition=" '$(Configuration)' == 'Release' ">
-    <Copy 
-      SourceFiles="Web.connection.config-release" 
-      DestinationFiles="Web.connection.config">
+    <Copy SourceFiles="Web.connection.config-release" DestinationFiles="Web.connection.config">
     </Copy>
   </Target>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" />

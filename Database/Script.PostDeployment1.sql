@@ -31,7 +31,7 @@ BEGIN
 		CreatedDate, ModifiedDate, IsActive
 	) VALUES (
 		1, 1, 1, '/1', 0, '',
-		'CMS', '', NULL, NULL,
+		'Beta Sigma Phi', '', NULL, NULL,
 		GETDATE(), GETDATE(), 1
 	)
 	SET IDENTITY_INSERT dbo.Document ON

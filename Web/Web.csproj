@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -44,17 +44,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Glimpse.AspNet, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Glimpse.AspNet, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Glimpse.AspNet.1.3.1\lib\net45\Glimpse.AspNet.dll</HintPath>
+      <HintPath>..\packages\Glimpse.AspNet.1.4.0\lib\net45\Glimpse.AspNet.dll</HintPath>
     </Reference>
-    <Reference Include="Glimpse.Core, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Glimpse.Core, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Glimpse.1.5.0\lib\net45\Glimpse.Core.dll</HintPath>
+      <HintPath>..\packages\Glimpse.1.6.0\lib\net45\Glimpse.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Glimpse.Mvc4, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Glimpse.Mvc4, Version=1.3.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Glimpse.Mvc4.1.3.2\lib\net40\Glimpse.Mvc4.dll</HintPath>
+      <HintPath>..\packages\Glimpse.Mvc4.1.3.3\lib\net40\Glimpse.Mvc4.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -480,7 +480,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.8\tools\Microsoft.Bcl.Build.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -492,5 +491,10 @@
       SourceFiles="Web.connection.config-release" 
       DestinationFiles="Web.connection.config">
     </Copy>
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
 </Project>

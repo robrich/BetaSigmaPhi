@@ -69,11 +69,15 @@ namespace BetaSigmaPhi.Web.Controllers {
 
 			if (this.ModelState.IsValid) {
 				User user = this.userRepository.GetById(id);
-				if (user == null && id > 0) {
-					return this.View("NotFound");
-				}
 				if (user == null) {
-					user = new User();
+					if (id > 0) {
+						return this.View("NotFound");
+					}
+					user = new User {
+						Email = Model.Email,
+						Salt = "notnull",
+						Password = "notnull"
+					};
 				}
 				this.UserFromModel(user, Model);
 				this.userRepository.Save(user);

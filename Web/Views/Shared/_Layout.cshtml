@@ -34,6 +34,7 @@
 							foreach (Document node in Html.DocumentRootMenu()) {
 								<li><a href="@Html.JoinUrl(MvcApplication.DOCUMENT_BASE_PATH, node.Slug)">@node.Name</a></li>
 							}
+                            <li>@Html.ActionLink("Polls", "CurrentPolls", "Polls", null, new { @class = "navbar-brand" })</li>
 						}
 						@if (Html.CurrentUserIsAdmin()) {
 							<li>@Html.ActionLink("Admin", "Index", "Admin")</li>

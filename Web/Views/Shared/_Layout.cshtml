@@ -25,16 +25,7 @@
 	                @Html.ActionLink("Beta Sigma Phi", "Index", "Home", null, new { @class = "navbar-brand" })
 	            </div>
 	            <div class="navbar-collapse collapse">
-	                <ul class="nav navbar-nav">
-	                    
-	                        @if (Html.CurrentUserIsAuthenticated()) {
-	                            <li> <p class="navbar-text"> Welcome @Html.CurrentUserFirstName()</p></li> 
-                                <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
-	                        } 
-                            else {
-                             <li>@Html.ActionLink("Login", "Index", "Login")</li>
-                            }
-                    
+	                <ul class="nav navbar-nav">                    
 	                    @if (Html.CurrentUserIsAuthenticated()) {
 	                        foreach (Document node in Html.DocumentRootMenu()) {
 	                            <li><a href="@Html.JoinUrl(MvcApplication.DOCUMENT_BASE_PATH, node.Slug)">@node.Name</a></li>
@@ -44,6 +35,17 @@
 	                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
 	                    }
 	                </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (Html.CurrentUserIsAuthenticated())
+                        {
+                            <li> <p class="navbar-text"> Welcome @Html.CurrentUserFirstName()</p></li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                        }
+                    </ul>
 	            </div>
 	        </div>
 	    </div>

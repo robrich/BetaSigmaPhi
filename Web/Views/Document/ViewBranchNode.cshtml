@@ -6,6 +6,15 @@
 
 <div class="container">
 	<div class="row">
+		@if (Html.CurrentUserIsAdmin()) {
+			<div class="pull-right">
+				@if (Model.Document.DocumentId != Document.ROOT_NODE_ID) {
+					@: <a href="@Url.Action("Edit", "DocumentBranch", new {id = @Model.Document.DocumentId})">Edit this Folder</a> |
+				}
+				<a href="@Url.Action("Add", "DocumentBranch", new {id = @Model.Document.DocumentId})">Add Folder in this folder</a> |
+				<a href="@Url.Action("Add", "DocumentLeaf", new {id = @Model.Document.DocumentId})">Add Document in this folder</a>
+			</div>
+		}
 		@Html.Partial("_DocumentBreadCrumb", Model)
 		
 		<h2>@ViewBag.Title</h2>
@@ -22,14 +31,5 @@
 			</ul>
 		}
 
-		@if (Html.CurrentUserIsAdmin()) {
-			<ul>
-				@if (Model.Document.DocumentId != Document.ROOT_NODE_ID) {
-					<li><a href="@Url.Action("Edit", "DocumentBranch", new {id = @Model.Document.DocumentId})">Edit this Folder</a></li>
-				}
-				<li><a href="@Url.Action("Add", "DocumentBranch", new {id = @Model.Document.DocumentId})">Add Folder in this folder</a></li>
-				<li><a href="@Url.Action("Add", "DocumentLeaf", new {id = @Model.Document.DocumentId})">Add Document in this folder</a></li>
-			</ul>
-		}
 	</div>
 </div>

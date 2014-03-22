@@ -21,6 +21,26 @@ VALUES (NodeTypeId, NodeTypeName)
 WHEN NOT MATCHED BY SOURCE THEN 
 DELETE;
 
+MERGE INTO dbo.Frequency AS Target 
+USING (VALUES 
+  (1, N'Weekly'), 
+  (2, N'Monthly'), 
+  (3, N'Quarterly'), 
+  (4, N'Anually')
+) 
+AS Source (FrequencyId, FrequencyDesc) 
+ON Target.FrequencyId = Source.FrequencyId 
+-- update matched rows 
+WHEN MATCHED THEN 
+UPDATE SET FrequencyDesc = Source.FrequencyDesc 
+-- insert new rows 
+WHEN NOT MATCHED BY TARGET THEN 
+INSERT (FrequencyId, FrequencyDesc) 
+VALUES (FrequencyId, FrequencyDesc) 
+-- delete rows that are in the target but not the source 
+WHEN NOT MATCHED BY SOURCE THEN 
+DELETE;
+
 -- Ensure root Document exists
 IF (SELECT COUNT(*) FROM dbo.Document WHERE DocumentId = 1) = 0
 BEGIN

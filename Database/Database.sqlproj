@@ -70,6 +70,10 @@
     <Build Include="dbo\Tables\ErrorLog.sql" />
     <Build Include="dbo\Tables\NodeType.sql" />
     <Build Include="dbo\Tables\Document.sql" />
+    <Build Include="dbo\Tables\Vote.sql" />
+    <Build Include="dbo\Tables\Poll.sql" />
+    <Build Include="dbo\Tables\Frequency.sql" />
+    <Build Include="dbo\Tables\Category.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment1.sql" />

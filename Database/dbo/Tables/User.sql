@@ -9,6 +9,7 @@
     [LoginFailCount]      INT            NOT NULL,
     [LoginFailStartDate]  DATETIME       NULL,
     [IsAdmin]             BIT            NOT NULL,
+    [IsElectable]         BIT            CONSTRAINT [DF_User_IsElectable] DEFAULT ((1)) NOT NULL,
     [RowVersion]          ROWVERSION     NOT NULL,
     [IsActive]            BIT            NOT NULL,
     [CreatedDate]         DATETIME       NOT NULL,

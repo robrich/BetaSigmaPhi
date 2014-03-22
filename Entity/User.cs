@@ -43,5 +43,7 @@
 
 		public bool IsAdmin { get; set; }
 
+		public bool IsElectable { get; set; }
+
 	}
 }

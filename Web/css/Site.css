@@ -27,6 +27,10 @@ footer {
 	border-color: #7e00a8;
 }
 
+div, p {
+	font-size: 1.05em;
+}
+
 a {
 	color: #660089;
 }

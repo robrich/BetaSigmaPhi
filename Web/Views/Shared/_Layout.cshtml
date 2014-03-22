@@ -8,12 +8,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
-		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" />
+        <link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/united/bootstrap.min.css" rel="stylesheet">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="/css/site.css" />
 		@RenderSection("head", required: false)
 	</head>
 	<body>
-	    <div class="navbar navbar-inverse navbar-fixed-top">
+	    <div class="navbar navbar-default navbar-fixed-top">
 	        <div class="container">
 	            <div class="navbar-header">
 	                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -25,9 +26,13 @@
 	            </div>
 	            <div class="navbar-collapse collapse">
 	                <ul class="nav navbar-nav">
-	                    @if (Html.CurrentUserIsAuthenticated()) {
-                            <li>@Html.ActionLink("Logout "+@Html.CurrentUserFirstName(), "Logout", "Login")</li>
-	                    }
+	                    <li>
+	                        @if (Html.CurrentUserIsAuthenticated()) {
+	                            @:Welcome @Html.CurrentUserFirstName() @Html.ActionLink("Logout", "Logout", "Login")
+	                        } else {
+	                            @Html.ActionLink("Login", "Index", "Login")
+	                        }
+	                    </li>
 	                    @if (Html.CurrentUserIsAuthenticated()) {
 	                        foreach (Document node in Html.DocumentRootMenu()) {
 	                            <li><a href="@Html.JoinUrl(MvcApplication.DOCUMENT_BASE_PATH, node.Slug)">@node.Name</a></li>

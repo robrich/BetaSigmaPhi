@@ -2,10 +2,14 @@
 	ViewBag.Title = "Admin Tools";
 }
 
-<h2>@ViewBag.Title</h2>
+<div class="container">
+	<div class="row">
+		<h2>@ViewBag.Title</h2>
 
-<ul>
-	<li>@Html.ActionLink("CMS", "Index", "Document")</li>
-	<li>@Html.ActionLink("Users", "Index", "User")</li>
-	<li>@Html.ActionLink("Errors", "Index", "ErrorLog")</li>
-</ul>
+		<ul>
+			<li>@Html.ActionLink("CMS", "Index", "Document")</li>
+			<li>@Html.ActionLink("Users", "Index", "User")</li>
+			<li>@Html.ActionLink("Errors", "Index", "ErrorLog")</li>
+		</ul>
+	</div>
+</div>

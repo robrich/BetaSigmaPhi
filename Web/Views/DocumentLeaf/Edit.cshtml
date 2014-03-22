@@ -1,72 +1,77 @@
 ﻿@model DocumentLeafEditViewModel
 
 @{
-	if ( Model.DocumentId < 1 ) {
+	if (Model.DocumentId < 1) {
 		ViewBag.Title = "Create a page";
 	} else {
 		ViewBag.Title = "Edit page " + Model.Name;
 	}
 }
 
-@Html.Partial( "_DocumentBreadCrumb", Model )
+<div class="container">
+	<div class="row">
 
-<h2>@ViewBag.Title</h2>
+		@Html.Partial("_DocumentBreadCrumb", Model)
 
-@using ( Html.BeginForm() ) {
-	@Html.ValidationSummary( true )
+		<h2>@ViewBag.Title</h2>
 
-	@Html.HiddenFor( m => m.DocumentId )
-	@Html.ValidationMessageFor( m => m.DocumentId )
-	@Html.HiddenFor( m => m.ParentDocumentId )
-	@Html.ValidationMessageFor( m => m.ParentDocumentId )
-	
-	<div class="editor-label">
-		@Html.LabelFor( m => m.Name )
-	</div>
-	<div class="editor-field">
-		@Html.EditorFor( m => m.Name )
-		@Html.ValidationMessageFor( m => m.Name )
-	</div>
-	
-	<div class="editor-label">
-		@Html.LabelFor( m => m.Slug )
-	</div>
-	<div class="editor-field">
-		@Html.EditorFor( m => m.Slug )
-		@Html.ValidationMessageFor( m => m.Slug )
-	</div>
+		@using (Html.BeginForm()) {
+			@Html.ValidationSummary(true)
 
-	<div class="editor-label">
-		@Html.LabelFor( m => m.IsActive )
+			@Html.HiddenFor(m => m.DocumentId)
+			@Html.ValidationMessageFor(m => m.DocumentId)
+			@Html.HiddenFor(m => m.ParentDocumentId)
+			@Html.ValidationMessageFor(m => m.ParentDocumentId)
+
+			<div class="editor-label">
+				@Html.LabelFor(m => m.Name)
+			</div>
+			<div class="editor-field">
+				@Html.EditorFor(m => m.Name)
+				@Html.ValidationMessageFor(m => m.Name)
+			</div>
+
+			<div class="editor-label">
+				@Html.LabelFor(m => m.Slug)
+			</div>
+			<div class="editor-field">
+				@Html.EditorFor(m => m.Slug)
+				@Html.ValidationMessageFor(m => m.Slug)
+			</div>
+
+			<div class="editor-label">
+				@Html.LabelFor(m => m.IsActive)
+			</div>
+			<div class="editor-field">
+				@Html.EditorFor(m => m.IsActive) @Html.LabelFor(m => m.IsActive)
+				@Html.ValidationMessageFor(m => m.IsActive)
+			</div>
+
+			<div class="editor-label editor-label-textarea">@Html.LabelFor(m => m.PageContent)</div>
+			<div class="editor-field editor-textarea">
+				@Html.TextAreaFor(m => m.PageContent, new { rows = 20, style = "width:700px;" })
+				@Html.ValidationMessageFor(m => m.PageContent)
+			</div>
+
+			<div class="editor-label editor-label-textarea">CSS links and styles</div>
+			<div class="editor-field editor-textarea">
+				@Html.TextAreaFor(m => m.HeadContent, new { rows = 8, style = "width:700px;" })
+				@Html.ValidationMessageFor(m => m.HeadContent)
+			</div>
+
+			<div class="editor-label editor-label-textarea">JavaScript references and code</div>
+			<div class="editor-field editor-textarea">
+				@Html.TextAreaFor(m => m.ScriptContent, new { rows = 8, style = "width:700px;" })
+				@Html.ValidationMessageFor(m => m.ScriptContent)
+			</div>
+
+			<div class="editor-submit">
+				<input type="submit" name="SaveButton" value="Save" />
+				<span id="ValidationMessage" class="field-validation-error"></span>
+			</div>
+		}
 	</div>
-	<div class="editor-field">
-		@Html.EditorFor( m => m.IsActive ) @Html.LabelFor( m => m.IsActive )
-		@Html.ValidationMessageFor( m => m.IsActive )
-	</div>
-	
-	<div class="editor-label editor-label-textarea">@Html.LabelFor( m => m.PageContent )</div>
-	<div class="editor-field editor-textarea">
-		@Html.TextAreaFor( m => m.PageContent, new { rows = 20, style = "width:700px;" } )
-		@Html.ValidationMessageFor( m => m.PageContent )
-	</div>
-		
-	<div class="editor-label editor-label-textarea">CSS links and styles</div>
-	<div class="editor-field editor-textarea">
-		@Html.TextAreaFor( m => m.HeadContent, new { rows = 8, style = "width:700px;" } )
-		@Html.ValidationMessageFor( m => m.HeadContent )
-	</div>
-		
-	<div class="editor-label editor-label-textarea">JavaScript references and code</div>
-	<div class="editor-field editor-textarea">
-		@Html.TextAreaFor( m => m.ScriptContent, new { rows = 8, style = "width:700px;" } )
-		@Html.ValidationMessageFor( m => m.ScriptContent )
-	</div>
-		
-	<div class="editor-submit">
-		<input type="submit" name="SaveButton" value="Save" />
-		<span id="ValidationMessage" class="field-validation-error"></span>
-	</div>
-}
+</div>
 
 @section scripts {
 	<script src="/js/ckeditor_4.2_custom/ckeditor.js"></script>

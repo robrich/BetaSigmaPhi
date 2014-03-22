@@ -1,29 +1,51 @@
-﻿@model BetaSigmaPhi.Web.Models.LoginModel
+﻿@using System.Diagnostics
+@model BetaSigmaPhi.Web.Models.LoginModel
 
 @{
 	ViewBag.Title = "Login";
 }
 
-<h2>@ViewBag.Title</h2>
+@section head {
+	<style>
+		.form-signin {
+			max-width: 330px;
+		}
+	</style>
+}
 
-<div>
-	@using ( Html.BeginForm() ) {
-		<h3>Login</h3>
-		@Html.LabelFor( m => m.Username )
-		@Html.EditorFor( m => m.Username )<br />
-		@Html.LabelFor( m => m.Password )
-		@Html.EditorFor( m => m.Password )<br />
-		<input type="checkbox" id="RememberMe" name="RememberMe" value="true" checked="@Model.RememberMe" />
-		@Html.LabelFor( m => m.RememberMe )<br />
-		<input type="submit" value="Login" /><br />
-		if ( !string.IsNullOrEmpty( Model.Message ) ) {
-			<div class="error">
-				@Model.Message
+<div class="container">
+	<h2>@ViewBag.Title</h2>
+
+	<div class="row">
+		@using (Html.BeginForm("Index", "Login", null, FormMethod.Post, new {role="form", @class="form-signin"})) {
+			<div class="form-group">
+				@Html.LabelFor(m => m.Username)
+				@Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+			</div>
+			<div class="form-group">
+				@Html.LabelFor(m => m.Password)
+				@Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+			</div>
+			<div class="form-group">
+				<div class="checkbox">
+					<input type="checkbox" id="RememberMe" name="RememberMe" value="true" checked="@Model.RememberMe" />
+					@Html.LabelFor(m => m.RememberMe)
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Login" /><br />
+				@if (!string.IsNullOrEmpty(Model.Message)) {
+					<div class="error">
+						@Model.Message
+					</div>
+				}
 			</div>
 		}
-	 }
+	</div>
+	
+	@if (Debugger.IsAttached) {
+		<div class="row">
+			<p>Initializing a new database?  Look to Service/UserInitializeService.cs for the default user</p>
+		</div>
+	}
 </div>
-
-<p>
-	Initializing a new database?  Look to Service/UserInitializeService.cs for the default user
-</p>

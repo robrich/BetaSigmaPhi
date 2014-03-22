@@ -10,10 +10,12 @@
 	}
 }
 
-<h1>@ViewBag.Title</h1>
-<p>
-	Sorry, an error occurred while processing your request. Please try your request again or contact support.
-	@if (Model != null && Model.ErrorId != null ) {
-		@: Please reference ErrorId @Model.ErrorId.			
-	}
-</p>
+<div class="container">
+	<h1 class ="text-danger">@ViewBag.Title</h1>
+	<p>
+		Sorry, an error occurred while processing your request. Please try your request again or contact support.
+		@if (Model != null && Model.ErrorId != null) {
+			@: Please reference ErrorId @Model.ErrorId.
+		}
+	</p>
+</div>

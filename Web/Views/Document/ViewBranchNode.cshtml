@@ -4,28 +4,32 @@
 	ViewBag.Title = Model.Document.Name;
 }
 
-@Html.Partial( "_DocumentBreadCrumb", Model )
+@Html.Partial("_DocumentBreadCrumb", Model)
 
-<h2>@ViewBag.Title</h2>
+<div class="container">
+	<div class="row">
+		<h2>@ViewBag.Title</h2>
 
-@if ( Model.Children.IsNullOrEmpty() ) {
-	<p>There is no content in this folder</p>
-} else {
-	<ul class="document-list">
-	@foreach ( Document node in Model.Children ) {
-		<li id="node-@node.DocumentId" class="child-node @node.NodeType.ToString().ToLowerInvariant()-node @if ( !node.IsActive ) {<text>hidden-node</text>}">
-			<a href="@Html.JoinUrl( MvcApplication.DOCUMENT_BASE_PATH, Model.NodeSlugPath, node.Slug )">@node.Name</a>
-		</li>
-	}
-	</ul>
-}
-
-@if (Html.CurrentUserIsAdmin()) {
-	<ul>
-		@if (Model.Document.DocumentId != Document.ROOT_NODE_ID) {
-			<li><a href="@Url.Action("Edit", "DocumentBranch", new {id = @Model.Document.DocumentId})">Edit this Folder</a></li>
+		@if (Model.Children.IsNullOrEmpty()) {
+			<p>There is no content in this folder</p>
+		} else {
+			<ul class="document-list">
+				@foreach (Document node in Model.Children) {
+					<li id="node-@node.DocumentId" class="child-node @node.NodeType.ToString().ToLowerInvariant()-node @if ( !node.IsActive ) {<text>hidden-node</text>}">
+						<a href="@Html.JoinUrl( MvcApplication.DOCUMENT_BASE_PATH, Model.NodeSlugPath, node.Slug )">@node.Name</a>
+					</li>
+				}
+			</ul>
 		}
-		<li><a href="@Url.Action("Add", "DocumentBranch", new {id = @Model.Document.DocumentId})">Add Folder in this folder</a></li>
-		<li><a href="@Url.Action("Add", "DocumentLeaf", new {id = @Model.Document.DocumentId})">Add Document in this folder</a></li>
-	</ul>
-}
+
+		@if (Html.CurrentUserIsAdmin()) {
+			<ul>
+				@if (Model.Document.DocumentId != Document.ROOT_NODE_ID) {
+					<li><a href="@Url.Action("Edit", "DocumentBranch", new {id = @Model.Document.DocumentId})">Edit this Folder</a></li>
+				}
+				<li><a href="@Url.Action("Add", "DocumentBranch", new {id = @Model.Document.DocumentId})">Add Folder in this folder</a></li>
+				<li><a href="@Url.Action("Add", "DocumentLeaf", new {id = @Model.Document.DocumentId})">Add Document in this folder</a></li>
+			</ul>
+		}
+	</div>
+</div>

@@ -38,59 +38,62 @@ li {
 </style>
 }
 
-<article>
-	
-<h2>@ViewBag.Title</h2>
+<div class="container">
 
-@if( Model.IsNullOrEmpty() ) {
-	<div>No items found</div>
-} else {
-	<table class="thegrid" cellpadding="0" cellspacing="0">
-		<thead>
-			<tr>
-				<th>ErrorLogId</th>
-				<th>Date</th>
-				<th>User</th>
-				<th>Url</th>
-				<th>Details</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach ( ErrorLogViewModel err in Model ) {
-				<tr>
-					<td>@Html.ActionLink( err.ErrorLogId.ToString(), "Detail", new { id = err.ErrorLogId } )</td>
-					<td>@err.CreatedDate.ToString("G")</td>
-					<td>@if (!string.IsNullOrEmpty(err.Email)) {
-						@: @err.Email
-					}</td>
-					<td>@err.PageUrl.TrimToLength( 50 )</td>
-					<td>@(( err.Message + err.ExceptionDetails ).TrimToLength( 50 ))</td>
-				</tr>
-			}
-		</tbody>
-	</table>
-	<p>Page: </p>
-	<ul class="pager list-style-none">
-		@if(first) {
-			<li>@Html.ActionLink( "1", "Index", new {id = 1} )</li>
-			if ( firstPage > 2 ) {
-				<li>...</li>
-			}
-		}
-		@for ( int i = firstPage; i <= lastPage; i++ ) {
-			if ( i != Model.PageNumber ) {
-				<li>@Html.ActionLink( i.ToString(), "Index", new {id = i} )</li>
-			} else {
-				<li>@Model.PageNumber</li>
-			}
-		}
-		@if(last) {
-			if ( lastPage < ( Model.TotalPages -1 ) ) {
-				<li>...</li>
-			}
-			<li>@Html.ActionLink( Model.TotalPages.ToString(), "Index", new {id = Model.TotalPages} )</li>
-		}
-	</ul>
-}
+	<h2>@ViewBag.Title</h2>
 
-</article>
+	@if (Model.IsNullOrEmpty()) {
+		<div>No items found</div>
+    } else {
+    <div class="row">
+        <table class="thegrid" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>ErrorLogId</th>
+                    <th>Date</th>
+                    <th>User</th>
+                    <th>Url</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ErrorLogViewModel err in Model) {
+                    <tr>
+                        <td>@Html.ActionLink(err.ErrorLogId.ToString(), "Detail", new { id = err.ErrorLogId })</td>
+                        <td>@err.CreatedDate.ToString("G")</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(err.Email)) {
+                                @: @err.Email
+					}
+                        </td>
+                        <td>@err.PageUrl.TrimToLength(50)</td>
+                        <td>@((err.Message + err.ExceptionDetails).TrimToLength(50))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p>Page: </p>
+        <ul class="pager list-style-none">
+            @if (first) {
+                <li>@Html.ActionLink("1", "Index", new { id = 1 })</li>
+                if (firstPage > 2) {
+                    <li>...</li>
+                }
+            }
+            @for (int i = firstPage; i <= lastPage; i++) {
+                if (i != Model.PageNumber) {
+                    <li>@Html.ActionLink(i.ToString(), "Index", new { id = i })</li>
+                } else {
+                    <li>@Model.PageNumber</li>
+                }
+            }
+            @if (last) {
+                if (lastPage < (Model.TotalPages - 1)) {
+                    <li>...</li>
+                }
+                <li>@Html.ActionLink(Model.TotalPages.ToString(), "Index", new { id = Model.TotalPages })</li>
+            }
+        </ul>
+    </div>
+    }
+</div>

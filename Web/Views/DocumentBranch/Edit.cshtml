@@ -1,50 +1,55 @@
 ﻿@model DocumentBranchEditViewModel
 
 @{
-	if ( Model.DocumentId < 1 ) {
+	if (Model.DocumentId < 1) {
 		ViewBag.Title = "Create a folder";
 	} else {
 		ViewBag.Title = "Edit folder " + Model.Name;
 	}
 }
 
-@Html.Partial( "_DocumentBreadCrumb", Model )
+<div class="container">
+	<div class="row">
 
-<h2>@ViewBag.Title</h2>
+		@Html.Partial("_DocumentBreadCrumb", Model)
 
-@using ( Html.BeginForm() ) {
-	@Html.ValidationSummary( true )
+		<h2>@ViewBag.Title</h2>
 
-	@Html.HiddenFor( m => m.DocumentId )
-	@Html.ValidationMessageFor( m => m.DocumentId )
-	@Html.HiddenFor( m => m.ParentDocumentId )
-	@Html.ValidationMessageFor( m => m.ParentDocumentId )
-	
-	<div class="editor-label">
-		@Html.LabelFor( m => m.Name )
-	</div>
-	<div class="editor-field">
-		@Html.EditorFor( m => m.Name )
-		@Html.ValidationMessageFor( m => m.Name )
-	</div>
+		@using (Html.BeginForm()) {
+			@Html.ValidationSummary(true)
 
-	<div class="editor-label">
-		@Html.LabelFor( m => m.Slug )
-	</div>
-	<div class="editor-field">
-		@Html.EditorFor( m => m.Slug )
-		@Html.ValidationMessageFor( m => m.Slug )
-	</div>
+			@Html.HiddenFor(m => m.DocumentId)
+			@Html.ValidationMessageFor(m => m.DocumentId)
+			@Html.HiddenFor(m => m.ParentDocumentId)
+			@Html.ValidationMessageFor(m => m.ParentDocumentId)
 
-	<div class="editor-label">
-		@Html.LabelFor( m => m.IsActive )
-	</div>
-	<div class="editor-field">
-		@Html.EditorFor( m => m.IsActive ) @Html.LabelFor( m => m.IsActive )
-		@Html.ValidationMessageFor( m => m.IsActive )
-	</div>
+			<div class="editor-label">
+				@Html.LabelFor(m => m.Name)
+			</div>
+			<div class="editor-field">
+				@Html.EditorFor(m => m.Name)
+				@Html.ValidationMessageFor(m => m.Name)
+			</div>
 
-	<div class="editor-submit">
-		<input type="submit" value="Save" />
+			<div class="editor-label">
+				@Html.LabelFor(m => m.Slug)
+			</div>
+			<div class="editor-field">
+				@Html.EditorFor(m => m.Slug)
+				@Html.ValidationMessageFor(m => m.Slug)
+			</div>
+
+			<div class="editor-label">
+				@Html.LabelFor(m => m.IsActive)
+			</div>
+			<div class="editor-field">
+				@Html.EditorFor(m => m.IsActive) @Html.LabelFor(m => m.IsActive)
+				@Html.ValidationMessageFor(m => m.IsActive)
+			</div>
+
+			<div class="editor-submit">
+				<input type="submit" value="Save" />
+			</div>
+		}
 	</div>
-}
+</div>

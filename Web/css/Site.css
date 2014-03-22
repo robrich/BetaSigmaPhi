@@ -8,11 +8,11 @@
 body {
 	padding-top: 50px;
 	padding-bottom: 20px;
-	background-image: url(http://subtlepatterns.com/patterns/skulls.png);
+	background-color: #e0b0ff;
 }
 
 footer {
-	border-top: 1px solid #cccccc;
+	border-top: 1px solid #7e00a8;
 	margin-top: 1em;
 	padding: 1em;
 	font-size: .7em;
@@ -23,7 +23,32 @@ footer {
 	margin-left: 5px;
 }
 
+.navbar-default {
+	background-color: #44005b;
+	border-color: #7e00a8;
+}
 
+div, p {
+	font-size: 1.05em;
+}
+
+a {
+	color: #660089;
+}
+a:focus, a:hover {
+	color: #7800a1;
+}
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+	background-color: #7800a1;
+}
+
+.btn-primary {
+	background-color: #44005b;
+	border-color: #7e00a8;
+}
+.btn-primary:focus, .btn-primary:hover {
+	background-color: #9e00d4;
+}
 
 
 /* styles for validation helpers */

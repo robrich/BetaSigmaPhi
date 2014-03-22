@@ -1,110 +1,97 @@
 ﻿<!DOCTYPE html>
 <html class="no-js">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>@ViewBag.Title - Beta Sigma Phi</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
-    <!--[if lt IE 9]>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/united/bootstrap.min.css" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="/css/site.css" />
-    @RenderSection("head", required: false)
-</head>
-<body>
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Beta Sigma Phi", "Index", "Home", null, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (Html.CurrentUserIsAuthenticated())
-                    {
-                        foreach (Document node in Html.DocumentRootMenu())
-                        {
-                            <li><a href="@Html.JoinUrl(MvcApplication.DOCUMENT_BASE_PATH, node.Slug)">@node.Name</a></li>
-                        }
-                    }
-                    @if (Html.CurrentUserIsAdmin())
-                    {
-                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-                    }
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    @if (Html.CurrentUserIsAuthenticated())
-                    {
-                        <li><p class="navbar-text"> <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp; Welcome @Html.CurrentUserFirstName()</p></li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
-                    }
-                    else
-                    {
-                        <li>@Html.ActionLink("Login", "Index", "Login")</li>
-                    }
-                </ul>
-            </div>
-        </div>
-    </div>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>@ViewBag.Title - Beta Sigma Phi</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+		<!--[if lt IE 9]>
+			<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/united/bootstrap.min.css" />
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="/css/site.css" />
+		@RenderSection("head", required: false)
+	</head>
+	<body>
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					@Html.ActionLink("Beta Sigma Phi", "Index", "Home", null, new { @class = "navbar-brand" })
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						@if (Html.CurrentUserIsAuthenticated()) {
+							foreach (Document node in Html.DocumentRootMenu()) {
+								<li><a href="@Html.JoinUrl(MvcApplication.DOCUMENT_BASE_PATH, node.Slug)">@node.Name</a></li>
+							}
+						}
+						@if (Html.CurrentUserIsAdmin()) {
+							<li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+						}
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						@if (Html.CurrentUserIsAuthenticated())
+						{
+							<li><p class="navbar-text"> <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp; Welcome @Html.CurrentUserFirstName()</p></li>
+							<li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+						}
+						else
+						{
+							<li>@Html.ActionLink("Login", "Index", "Login")</li>
+						}
+					</ul>
+				</div>
+			</div>
+		</div>
 
-    <!--[if lt IE 8]>
-    <div class="container" style="margin-top: 20px">
-        <div class="row">
-            <div class="alert alert-warning">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
-            </div>
-        </div>
-    </div>
-    <![endif]-->
+		<!--[if lt IE 8]>
+		<div class="container" style="margin-top: 20px">
+			<div class="row">
+				<div class="alert alert-warning">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+				</div>
+			</div>
+		</div>
+		<![endif]-->
 
-    <div class="clear-fix" style="margin-top: 20px">
-        @RenderBody()
-    </div>
-    <footer style="margin-top: 50px;">
-        <div class="container">
-            <div class="row">
-                <p class="text-center text-muted">&copy; @DateTime.Now.Year - Beta Sigma Phi</p>
-            </div>
-        </div>
-    </footer>
-    @*
-        https://developers.google.com/speed/libraries/devguide lists Google's CDN content
-        http://www.cdnjs.com/ is the missing CDN
-    *@
-
-    @*
-        Added by MDE 3/22/2014. This is to support kendoui scripts execution order. If logic added skip loading jquery.min.js.
-        Kendoui requires jquery scripts executed in specific different order.
-    *@
-
-    @if (ViewContext.RouteData.Values["controller"].ToString() != "Polls")
-    {
-        <!--[if lt IE 9]>
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-            <![endif]-->
-        <!--[if gte IE 9]><!-->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <!--<![endif]-->
-    }
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.js"></script>
-    <script src="/js/jquery.unobtrusive-ajax.min.js"></script>
-    <script src="/js/jquery.validate.unobtrusive.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
-    <script src="/js/jquery.log.js"></script>
-    <script src="/js/init.js"></script>
-    @RenderSection("scripts", required: false)
-</body>
+		<div class="clear-fix" style="margin-top: 20px">
+			@RenderBody()
+		</div>
+		<footer style="margin-top: 50px;">
+			<div class="container">
+				<div class="row">
+					<p class="text-center"><small>&copy; @DateTime.Now.Year - Beta Sigma Phi | Powered by <a href="http://discountasp.net" target="_blank">DiscountASP.NET</a></small></p>
+				</div>
+			</div>
+		</footer>
+		@*
+			https://developers.google.com/speed/libraries/devguide lists Google's CDN content
+			http://www.cdnjs.com/ is the missing CDN
+		*@
+		<!--[if lt IE 9]>
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<![endif]-->
+		<!--[if gte IE 9]><!-->
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<!--<![endif]-->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.js"></script>
+		<script src="/js/jquery.unobtrusive-ajax.min.js"></script>
+		<script src="/js/jquery.validate.unobtrusive.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+		<script src="/js/jquery.log.js"></script>
+		<script src="/js/init.js"></script>
+		@RenderSection("scripts", required: false)
+	</body>
 </html>

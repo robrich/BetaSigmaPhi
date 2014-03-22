@@ -2,8 +2,13 @@
     ViewBag.Title = "Polls Tools";
 }
 
-@Styles.Render("~/css/kendouicss")
-@Scripts.Render("~/js/kendouijs")
+@section head {
+    @Styles.Render("~/css/kendouicss")
+}
+
+@section scripts {
+    @Scripts.Render("~/js/kendouijs")
+}
 
 <div class="container">
     <div class="row">

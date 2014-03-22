@@ -82,22 +82,12 @@
         https://developers.google.com/speed/libraries/devguide lists Google's CDN content
         http://www.cdnjs.com/ is the missing CDN
     *@
-
-    @*
-        Added by MDE 3/22/2014. This is to support kendoui scripts execution order. If logic added skip loading jquery.min.js.
-        Kendoui requires jquery scripts executed in specific different order.
-    *@
-
-    @if (ViewContext.RouteData.Values["controller"].ToString() != "Polls")
-    {
-        <!--[if lt IE 9]>
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <![endif]-->
-		<!--[if gte IE 9]><!-->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-		<!--<![endif]-->
-    }
-    
+    <!--[if lt IE 9]>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <![endif]-->
+	<!--[if gte IE 9]><!-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<!--<![endif]-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.js"></script>
     <script src="/js/jquery.unobtrusive-ajax.min.js"></script>

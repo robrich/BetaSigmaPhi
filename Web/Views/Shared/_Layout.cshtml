@@ -38,7 +38,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         @if (Html.CurrentUserIsAuthenticated())
                         {
-                            <li> <p class="navbar-text"> Welcome @Html.CurrentUserFirstName()</p></li>
+                            <li><p class="navbar-text"> <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;Welcome @Html.CurrentUserFirstName()</p></li>
                             <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
                         }
                         else

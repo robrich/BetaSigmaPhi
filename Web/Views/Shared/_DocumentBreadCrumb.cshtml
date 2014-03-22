@@ -8,11 +8,11 @@
 	int count = this.Model.PathNodes.Count;
 }
 <div class="bread-crumb row">
-	<a id="node-0" href="@Url.Action( "Index", "Home" )"><img src="/img/house.jpg" alt="Home" title="Home" /></a> 
+	<a id="node-0" href="@Url.Action( "Index", "Home" )"><span class="glyphicon glyphicon-home"></span></a> 
 	@for ( int i = 0; i < count; i++ ) {
 		Document node = this.Model.PathNodes[i];
 		pathStep = Html.JoinUrl( pathStep, node.Slug );
-		<text> &gt; </text>
+		<text> &nbsp;<span class="glyphicon glyphicon-chevron-right"></span>&nbsp; </text>
 		if ( i == ( count - 1 ) && !Model.LastNodeIsLink ) {
 			<span id="node-@node.DocumentId" class="bread-current-node @if ( !node.IsActive ) {<text>hidden-node</text>}">@node.Name</span>
 		} else {

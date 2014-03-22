@@ -25,13 +25,9 @@
 	            </div>
 	            <div class="navbar-collapse collapse">
 	                <ul class="nav navbar-nav">
-	                    <li>
-	                        @if (Html.CurrentUserIsAuthenticated()) {
-	                            @:Welcome @Html.CurrentUserFirstName() @Html.ActionLink("Logout", "Logout", "Login")
-	                        } else {
-	                            @Html.ActionLink("Login", "Index", "Login")
-	                        }
-	                    </li>
+	                    @if (Html.CurrentUserIsAuthenticated()) {
+                            <li>@Html.ActionLink("Logout "+@Html.CurrentUserFirstName(), "Logout", "Login")</li>
+	                    }
 	                    @if (Html.CurrentUserIsAuthenticated()) {
 	                        foreach (Document node in Html.DocumentRootMenu()) {
 	                            <li><a href="@Html.JoinUrl(MvcApplication.DOCUMENT_BASE_PATH, node.Slug)">@node.Name</a></li>

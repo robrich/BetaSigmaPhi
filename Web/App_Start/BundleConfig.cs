@@ -14,7 +14,13 @@
 
 			bundles.Add( new StyleBundle( "~/css/site" ).Include( "~/css/site.css" ) );
 
+            //Added by MDE 3/22/2014 support for kendoui ############################################################################################################################
+            bundles.Add(new StyleBundle("~/css/kendouicss").Include("~/css/kendoui/kendo.common.min.css", "~/css/kendoui/kendo.rtl.min.css", "~/css/kendoui/kendo.default.min.css"));
+            bundles.Add(new ScriptBundle("~/js/kendouijs").Include("~/js/kendoui/jquery.min.js", "~/js/kendoui/console.js", "~/js/kendoui/kendo.web.min.js"));
+            //Added by MDE 3/22/2014 support for kendoui ############################################################################################################################
+
 		}
 
 	}
+
 }

@@ -7,8 +7,8 @@ var ckeditorify = function (options) {
 		/*jshint camelcase:false */
 		target.ckeditor({
 			resize_dir: 'both',
-			width: options.width || 960,
-			height: options.height || 500,
+			width: options.width || 1000,
+			height: options.height || 800,
 			extraPlugins: 'divarea',
 			allowedContent: true
 		});

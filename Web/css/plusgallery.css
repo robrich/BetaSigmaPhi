@@ -108,12 +108,12 @@ background-color: #38beea;
 .pgalbumtitle {
 	bottom: 3%;
 	left: 3%;
-	background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
+	background: -moz-linear-gradient(top,	rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C */
+	background: -webkit-linear-gradient(top,	rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,	rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,	rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,	rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
 	color: #fff;
 	text-shadow: 1px 1px 2px rgba(0,0,0,.4);
@@ -199,8 +199,8 @@ background-color: #38beea;
 #pgthumbcrumbs li#pgthumbhome:hover {
 	background-color: #38beea;
 	-webkit-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.5);
+	box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.5);
 	color: #fff;
 }
 
@@ -254,7 +254,7 @@ background-color: #38beea;
 	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#CC000000,endColorstr=#CC000000)"; /* IE8 */
 	background: rgba(0,0,0,.8);
 	text-align: center;
-	z-index: 1000;
+	z-index: 1500;
 	top: 0;
 	left: 0;
 }
@@ -274,7 +274,7 @@ background-color: #38beea;
 	-webkit-overflow-scrolling: touch;
 	width: 100%;
 	height: 100%;
-	z-index: 1010;
+	z-index: 1510;
 }
 
 #pgzoom {
@@ -314,18 +314,15 @@ background-color: #38beea;
 .pgzoomcenter {
 	vertical-align: middle;
 	display: inline-block;
-	/*width: 80%;*/
-	/*height: 85%;*/
 	text-align: center;	
-	
 }
 
 .pgzoomimg {
 	max-width: 80%;
 	max-height: 75%;
-	-webkit-box-shadow:  1px 1px 8px rgba(0, 0, 0, 0.9);
-  -moz-box-shadow:  1px 1px 8px rgba(0, 0, 0, 0.9);
-  box-shadow:  1px 1px 8px rgba(0, 0, 0, 0.9);
+	-webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.9);
+	-moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.9);
+	box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.9);
 	vertical-align: middle;
 	opacity: 0;
 	-webkit-transition: opacity 0.4s ease-out;
@@ -376,13 +373,13 @@ background-color: #38beea;
 	margin-top: -50px;
 	overflow: hidden;
 	text-indent: -5000px;
-	z-index: 1011;
+	z-index: 1511;
 }
 
 .pgzoomarrow:hover {
 	-webkit-box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.3);
-  box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.3);
+	box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.3);
 }
 
 #pgprevious {
@@ -422,13 +419,13 @@ background-color: #38beea;
 	background-position: 50% 50%;
 	overflow: hidden;
 	text-indent: -5000px;
-	z-index: 1011;
+	z-index: 1511;
 }
 
 #pgzoomclose:hover {
 	-webkit-box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.3);
-  box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.3);
+	box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.3);
 }
 
 #pgcredit {
@@ -444,8 +441,8 @@ background-color: #38beea;
 	letter-spacing: 1px;
 	background-color: transparent;
 	-webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 	padding: .3em .5em .3em .4em;
 	font-size: 10px;
 	text-transform: uppercase;
@@ -453,8 +450,8 @@ background-color: #38beea;
 #pgcredit a:hover {
 	background-color: #38beea !important;
 	-webkit-box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
-  -moz-box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
-  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
+	-moz-box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
+	box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
 }
 
 #plusgallery #pgcredit a span {

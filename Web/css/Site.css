@@ -8,7 +8,7 @@
 body {
 	padding-top: 50px;
 	padding-bottom: 20px;
-    background-image: url(http://subtlepatterns.com/patterns/skulls.png);
+	background-image: url(http://subtlepatterns.com/patterns/skulls.png);
 }
 
 footer {
@@ -17,6 +17,14 @@ footer {
 	padding: 1em;
 	font-size: .7em;
 }
+
+.bread-crumb {
+	margin-top: 10px;
+	margin-left: 5px;
+}
+
+
+
 
 /* styles for validation helpers */
 .field-validation-error {
@@ -41,9 +49,4 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
 	display: none;
-}
-
-.bread-crumb {
-    margin-top: 10px;
-    margin-left: 5px;
 }

@@ -26,13 +26,15 @@
 	            </div>
 	            <div class="navbar-collapse collapse">
 	                <ul class="nav navbar-nav">
-	                    <li>
+	                    
 	                        @if (Html.CurrentUserIsAuthenticated()) {
-	                            @:Welcome @Html.CurrentUserFirstName() @Html.ActionLink("Logout", "Logout", "Login")
-	                        } else {
-	                            @Html.ActionLink("Login", "Index", "Login")
-	                        }
-	                    </li>
+	                            <li> <p class="navbar-text"> Welcome @Html.CurrentUserFirstName()</p></li> 
+                                <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+	                        } 
+                            else {
+                             <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                            }
+                    
 	                    @if (Html.CurrentUserIsAuthenticated()) {
 	                        foreach (Document node in Html.DocumentRootMenu()) {
 	                            <li><a href="@Html.JoinUrl(MvcApplication.DOCUMENT_BASE_PATH, node.Slug)">@node.Name</a></li>

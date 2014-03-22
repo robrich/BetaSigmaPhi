@@ -1,0 +1,10 @@
+﻿@model string
+
+@Html.Partial("_DocumentBreadCrumb", new DocumentBreadcrumbViewModel {
+	PathNodes = new List<Document> {
+		new Document {
+			Name = Model,
+			Slug = ""
+		}
+	}
+})

@@ -315,6 +315,7 @@
     <Content Include="Views\Document\ViewLeafNode.cshtml" />
     <Content Include="Views\Shared\_DocumentBreadCrumb.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\_DocumentBreadCrumbNonCms.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,23 +1,17 @@
 ﻿@{
-    Layout = null;
-}
-
-@{
     ViewBag.Title = "Category";
 }
 
-<link href="/css/kendoui/kendo.common.min.css" rel="stylesheet">
-<link href="/css/kendoui/kendo.rtl.min.css" rel="stylesheet">
-<link href="/css/kendoui/kendo.default.min.css" rel="stylesheet">
-<script src="/js/kendoui/jquery.min.js"></script>
-<script src="/js/kendoui/kendo.web.min.js"></script>
-<script src="/js/kendoui/console.js"></script>
-<script></script>
+@section head {
+@Styles.Render("~/css/kendouicss")
+}
 
 <h2>Category</h2>
 
 <div id="grid"></div>
 
+@section scripts {
+@Scripts.Render("~/js/kendouijs")
 <script>
     $(document).ready(function () {
         var crudServiceBaseUrl = "http://demos.telerik.com/kendo-ui/service",
@@ -77,3 +71,4 @@
         });
     });
 </script>
+}

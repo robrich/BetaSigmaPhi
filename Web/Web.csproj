@@ -212,10 +212,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\plusgallery.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="img\calendar.gif" />
     <Content Include="img\house.jpg" />
+    <Content Include="img\plusgallery\210.png" />
+    <Content Include="img\plusgallery\80.png" />
+    <Content Include="img\plusgallery\arrows.gif" />
+    <Content Include="img\plusgallery\icons.png" />
+    <Content Include="img\plusgallery\loader.gif" />
+    <Content Include="img\plusgallery\loading-albums.gif" />
+    <Content Include="img\plusgallery\loading-gallery.gif" />
+    <Content Include="img\plusgallery\square.gif" />
+    <Content Include="img\plusgallery\square.png" />
+    <Content Include="img\plusgallery\zoom-icons.gif" />
     <Content Include="js\ckeditorify.js" />
     <Content Include="js\ckeditor_4.2_custom\adapters\jquery.js" />
     <Content Include="js\ckeditor_4.2_custom\ckeditor.js" />
@@ -390,6 +401,7 @@
     <None Include="js\jquery-2.0.3.intellisense.js" />
     <Content Include="js\jquery-2.0.3.js" />
     <Content Include="js\jquery-2.0.3.min.js" />
+    <Content Include="js\plusgallery.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

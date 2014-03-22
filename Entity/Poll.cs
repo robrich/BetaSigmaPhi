@@ -20,5 +20,10 @@
 		public DateTime StartDate { get; set; }
 		public DateTime EndDate { get; set; }
 
+		[NotMapped]
+		public bool IsOpenForVoting {
+			get { return DateTime.Now >= StartDate && DateTime.Now <= EndDate; }
+		}
+
 	}
 }

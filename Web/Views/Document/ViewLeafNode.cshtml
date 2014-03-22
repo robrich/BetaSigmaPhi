@@ -14,17 +14,16 @@
 <div class="container">
 	<div class="row">
 		<div class="CMS">
+			@if (Html.CurrentUserIsAdmin()) {
+				<div class="pull-right">
+					<a href="@Url.Action("Edit", "DocumentLeaf", new {id = Model.Document.DocumentId})">Edit this Document</a>
+				</div>
+			}
 			@Html.Partial("_DocumentBreadCrumb", Model)
 			<article>
 				<h2>@ViewBag.Title</h2>
 				@Html.Raw(Model.Document.PageContent)
 			</article>
 		</div>
-
-		@if (Html.CurrentUserIsAdmin()) {
-			<ul>
-				<li><a href="@Url.Action("Edit", "DocumentLeaf", new {id = Model.Document.DocumentId})">Edit</a></li>
-			</ul>
-		}
 	</div>
 </div>

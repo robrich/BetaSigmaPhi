@@ -16,43 +16,43 @@
 		@RenderSection("head", required: false)
 	</head>
 	<body>
-	    <div class="navbar navbar-inverse navbar-fixed-top">
-	        <div class="container">
-	            <div class="navbar-header">
-	                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-	                    <span class="icon-bar"></span>
-	                    <span class="icon-bar"></span>
-	                    <span class="icon-bar"></span>
-	                </button>
-	                @Html.ActionLink("Beta Sigma Phi", "Index", "Home", null, new { @class = "navbar-brand" })
-	            </div>
-	            <div class="navbar-collapse collapse">
-	                <ul class="nav navbar-nav">
-	                    @if (Html.CurrentUserIsAuthenticated()) {
-                            <li>@Html.ActionLink("Logout "+@Html.CurrentUserFirstName(), "Logout", "Login")</li>
-	                    }
-	                    @if (Html.CurrentUserIsAuthenticated()) {
-	                        foreach (Document node in Html.DocumentRootMenu()) {
-	                            <li><a href="@Html.JoinUrl(MvcApplication.DOCUMENT_BASE_PATH, node.Slug)">@node.Name</a></li>
-	                        }
-	                    }
-	                    @if (Html.CurrentUserIsAdmin()) {
-	                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-	                    }
-	                </ul>
-	            </div>
-	        </div>
-	    </div>
-        <div class="clear-fix">
-            @RenderBody()
-        </div>
-	    <footer>
-	        <div class="container">
-	            <div class="row">
-                    <p class="text-center text-muted">&copy; @DateTime.Now.Year - Beta Sigma Phi</p>
-	            </div>
-	        </div>
-        </footer>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					@Html.ActionLink("Beta Sigma Phi", "Index", "Home", null, new { @class = "navbar-brand" })
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						@if (Html.CurrentUserIsAuthenticated()) {
+							<li>@Html.ActionLink("Logout "+@Html.CurrentUserFirstName(), "Logout", "Login")</li>
+						}
+						@if (Html.CurrentUserIsAuthenticated()) {
+							foreach (Document node in Html.DocumentRootMenu()) {
+								<li><a href="@Html.JoinUrl(MvcApplication.DOCUMENT_BASE_PATH, node.Slug)">@node.Name</a></li>
+							}
+						}
+						@if (Html.CurrentUserIsAdmin()) {
+							<li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+						}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="clear-fix">
+			@RenderBody()
+		</div>
+		<footer>
+			<div class="container">
+				<div class="row">
+					<p class="text-center text-muted">&copy; @DateTime.Now.Year - Beta Sigma Phi</p>
+				</div>
+			</div>
+		</footer>
 		@*
 			https://developers.google.com/speed/libraries/devguide lists Google's CDN content
 			http://www.cdnjs.com/ is the missing CDN

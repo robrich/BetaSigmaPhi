@@ -4,10 +4,9 @@
 	ViewBag.Title = Model.Document.Name;
 }
 
-@Html.Partial("_DocumentBreadCrumb", Model)
-
 <div class="container">
 	<div class="row">
+        @Html.Partial("_DocumentBreadCrumb", Model)
 		<h2>@ViewBag.Title</h2>
 
 		@if (Model.Children.IsNullOrEmpty()) {

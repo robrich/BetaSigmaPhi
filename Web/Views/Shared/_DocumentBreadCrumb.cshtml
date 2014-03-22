@@ -7,7 +7,7 @@
 	string pathStep = MvcApplication.DOCUMENT_BASE_PATH;
 	int count = this.Model.PathNodes.Count;
 }
-<div class="bread-crumb">
+<div class="bread-crumb row">
 	<a id="node-0" href="@Url.Action( "Index", "Home" )"><img src="/img/house.jpg" alt="Home" title="Home" /></a> 
 	@for ( int i = 0; i < count; i++ ) {
 		Document node = this.Model.PathNodes[i];

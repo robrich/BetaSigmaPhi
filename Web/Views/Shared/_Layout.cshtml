@@ -1,18 +1,15 @@
 ﻿<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html class="no-js">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>@ViewBag.Title - Beta Sigma Phi</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.0/normalize.css" />
-		<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
-		<link type="text/css" rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/start/jquery-ui.css" />
-		@Styles.Render("~/css/site")
+		<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/css/site.css" />
 		@RenderSection("head", required: false)
 	</head>
 	<body>
@@ -60,7 +57,6 @@
 		@*
 			https://developers.google.com/speed/libraries/devguide lists Google's CDN content
 			http://www.cdnjs.com/ is the missing CDN
-			http://www.asp.net/ajaxlibrary/CDN.ashx lists MS's CDN content
 		*@
 		<!--[if lt IE 9]>
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -68,11 +64,11 @@
 		<!--[if gte IE 9]><!-->
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 		<!--<![endif]-->
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.js"></script>
 		<script src="/js/jquery.unobtrusive-ajax.min.js"></script>
 		<script src="/js/jquery.validate.unobtrusive.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 		<script src="/js/jquery.log.js"></script>
 		<script src="/js/init.js"></script>
 		@RenderSection("scripts", required: false)

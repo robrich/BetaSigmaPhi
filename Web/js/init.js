@@ -15,27 +15,6 @@
 			}
 		}
 	});
-	if (!Modernizr.inputtypes.date) {
-		var dates = $("input[type='date']");
-		dates.each(function () {
-			// swap yyyy-MM-dd to M/d/yyyy
-			var that = $(this),
-				val = that.val(),
-				parsed;
-			if (val) {
-				parsed = moment(val).format("M/D/YYYY"); // http://momentjs.com/docs/#/displaying/format/
-				if (parsed) {
-					that.val(parsed);
-				}
-			}
-		});
-		dates.datepicker({
-			dateFormat: "m/d/yy", // http://api.jqueryui.com/datepicker/#utility-formatDate
-			showOn: "both",
-			buttonImage: "/img/calendar.gif",
-			buttonImageOnly: true
-		});
-	}
 	$.log.url = '/error/log';
 	// Hook $.ajax's error details
 	$.logAjax({

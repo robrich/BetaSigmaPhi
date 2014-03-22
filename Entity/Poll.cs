@@ -11,6 +11,9 @@
 			set { this.Id = value; }
 		}
 
+		public int CategoryId { get; set; }
+		public Category Category { get; set; }
+
 		[Column("FrequencyId")]
 		public Frequency Frequency { get; set; }
 

@@ -11,7 +11,7 @@
             foreach (PollWithEligibleUsers p in Model.avaiablePollsWithEligibleUsers)
             {
                 <div class="col-md-5">
-                    @using (Html.BeginForm("SubmitPoll", "Polls", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    @using (Html.BeginForm("CurrentPolls", "Polls", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         <h4>@p.userPoll.Category.Name</h4>
                         <hr />
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            @ViewBag.Message
+                            @ViewData[p.userPoll.PollId.ToString()]
                         </div>
                     }
 

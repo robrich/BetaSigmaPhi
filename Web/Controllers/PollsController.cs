@@ -102,20 +102,53 @@
         }
 
         [HttpPost]
-        public ActionResult SubmitPoll()
+        [ActionName("CurrentPolls")]
+        public ActionResult CurrentPollsPost()
         {
             string pollId = this.Request["selectedPollId"];
             string electedUserId = this.Request["electedUserId"];
             int currentUser = this.userService.GetCurrentUserId() ?? 0;
 
-            int result = this.voteRepository.Save(new Vote { ElectedUserId = int.Parse(electedUserId), PollId = int.Parse(pollId), VoteDate = DateTime.Now, VoterUserId = currentUser, ModifiedDate = DateTime.Now, CreatedDate = DateTime.Now });
-
-            if (result > 0)
+            if (!string.IsNullOrEmpty(pollId) && !string.IsNullOrEmpty(electedUserId) && currentUser > 0)
             {
-                ViewBag.Message = "Your poll is submitted successfully.";
+                if (this.voteRepository.HasReachedPollingLimit(Convert.ToInt32(pollId), currentUser))
+                {
+                    ViewData[pollId] = "You have reached the maximum voting limit.";
+                }
+                else
+                {
+                    int result = this.voteRepository.Save(new Vote { ElectedUserId = int.Parse(electedUserId), PollId = int.Parse(pollId), VoteDate = DateTime.Now, VoterUserId = currentUser, ModifiedDate = DateTime.Now, CreatedDate = DateTime.Now });
+                    if (result > 0)
+                    {
+                        ViewData[pollId] = "Your poll is submitted successfully.";
+                    }
+                }
+            }
+            else
+            {
+                ViewData[pollId] = "Please select a member and submit your vote.";
             }
 
-            return View();
+            //Get Poll Information again
+            PollsWithEligibleUsersViewModel polls = new PollsWithEligibleUsersViewModel();
+            polls.avaiablePollsWithEligibleUsers = new List<PollWithEligibleUsers>();
+            List<Poll> availablePolls = this.pollRepository.GetActivePolls();
+
+            foreach (Poll p in availablePolls)
+            {
+                PollWithEligibleUsers pWithUsers = new PollWithEligibleUsers();
+                pWithUsers.userPoll = p;
+
+                p.Category = this.categoryRepository.GetById(p.CategoryId);
+
+                User previousWinner = this.pollRepository.GetWinnerForPreviousPoll(p.PollId);
+                int? userId = this.userService.GetCurrentUserId();
+                List<User> eligibleUsers = this.userRepository.GetEligableUsers(previousWinner == null ? 0 : previousWinner.UserId, userId ?? 0);
+                pWithUsers.EligibleUsers = eligibleUsers;
+                polls.avaiablePollsWithEligibleUsers.Add(pWithUsers);
+            }
+
+            return View("CurrentPolls", polls);
         }
         #endregion User Polls
 

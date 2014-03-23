@@ -10,18 +10,21 @@
         {
             foreach (PollWithEligibleUsers p in Model.avaiablePollsWithEligibleUsers)
             {
-                <div class="col-md-3">
+                <div class="col-md-5">
                     @using (Html.BeginForm("SubmitPoll", "Polls", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         <h4>@p.userPoll.Category.Name</h4>
                         <hr />
                         <div class="form-group">
-                            @Html.Label("Elect your choice:", new { @class = "col-md-2 control-label" })
-                            <div class="col-md-10">
+                            @Html.Label("Elect your choice:", new { @class = "col-md-5 control-label" })
+                            <div class="col-md-7">
                                 <select name="electedUser" id="electedUser">
-                                    @foreach (User u in p.EligibleUsers)
+                                    @if (p.EligibleUsers != null && p.EligibleUsers.Count > 0)
                                     {
-                                        <option value="@u.UserId">@u.FirstName + " " + @u.LastName</option>
+                                        foreach (User u in p.EligibleUsers)
+                                        {
+                                            <option value="@u.UserId">@u.FirstName &nbsp; @u.LastName</option>
+                                        }
                                     }
                                 </select>
                             </div>

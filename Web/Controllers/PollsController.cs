@@ -71,12 +71,15 @@
         public ActionResult CurrentPolls()
         {
             PollsWithEligibleUsersViewModel polls = new PollsWithEligibleUsersViewModel();
+            polls.avaiablePollsWithEligibleUsers = new List<PollWithEligibleUsers>();
             List<Poll> availablePolls = this.pollRepository.GetActivePolls();
             
             foreach (Poll p in availablePolls)
             {
                 PollWithEligibleUsers pWithUsers = new PollWithEligibleUsers();
                 pWithUsers.userPoll = p;
+
+                p.Category = this.categoryRepository.GetById(p.CategoryId);
 
                 User previousWinner = this.pollRepository.GetWinnerForPreviousPoll(p.PollId);
                 int? userId = this.userService.GetCurrentUserId();
@@ -154,8 +157,13 @@
         [RequireAdmin]
         [HttpPost]
         [ActionName("AddPoll")]
-        public ActionResult AddPollPost()
+        public ActionResult AddPollPost(Poll myPoll)
         {
+            int result = this.pollRepository.Save(myPoll);
+            if (result > 0)
+            {
+                ViewBag.Message = "The poll was successfully saved.";
+            }
             return View();
         }
 
@@ -171,8 +179,22 @@
         }
 
         [RequireAdmin]
-        public ActionResult EditCategory(int CategoryId)
+        public ActionResult EditCategory(Category category)
         {
+            Category editItem = category;
+            return View(editItem);
+        }
+
+        [RequireAdmin]
+        [ActionName("EditCategory")]
+        [HttpPost]
+        public ActionResult EditCategoryPost(Category category)
+        {
+            int result = this.categoryRepository.Save(category);
+            if (result > 0)
+            {
+                ViewBag.Message = "The record is successfully edited.";
+            }
             return View();
         }
 
@@ -192,8 +214,13 @@
         [RequireAdmin]
         [HttpPost]
         [ActionName("AddCategory")]
-        public ActionResult AddCategoryPost()
+        public ActionResult AddCategoryPost(Category model)
         {
+            int categoryId = this.categoryRepository.Save(new Category { Name = model.Name});
+            if (categoryId > 0)
+            { 
+                ViewBag.Message = "The category was successfully created."; 
+            }
             return View();
         }
 

@@ -60,7 +60,7 @@
 
         public List<User> GetEligableUsers(int PreviousWinnerId, int CurrentUserId)
         {
-            if (PreviousWinnerId < 1 || CurrentUserId < 1)
+            if (PreviousWinnerId < 1 && CurrentUserId < 1)
             {
                 return null; // You asked for nothing, you got it
             }

@@ -1,5 +1,34 @@
-﻿@{
-    ViewBag.Title = "EditCategory";
+﻿@model Category
+
+@{
+    ViewBag.Title = "Edit Category";
 }
 
-<h2>EditCategory</h2>
+<div class="container">
+    <div class="row">
+        <h2>@ViewBag.Title</h2>
+
+        <div class="col-md-6">
+
+            @using (Html.BeginForm("EditCategory", "Polls", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.HiddenFor(m => m.CategoryId, new { @class = "form-control" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-default" value="Submit" />
+                    </div>
+                </div>
+                <div class="row">
+                    @ViewBag.Message
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

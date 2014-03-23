@@ -49,7 +49,8 @@ namespace BetaSigmaPhi.Web.Controllers
         {
             // The request is in the format GET api/YourController?{take:10,skip:0} and ParseQueryString treats it as a key without value
             DataSourceRequest request = JsonConvert.DeserializeObject<DataSourceRequest>(requestMessage.RequestUri.ParseQueryString().GetKey(0));
-            return this.pollRepository.GetActive().AsQueryable().ToDataSourceResult(request.Take, request.Skip, request.Sort, request.Filter);
+            var a = this.pollRepository.GetActive().AsQueryable().ToDataSourceResult(request.Take, request.Skip, request.Sort, request.Filter);
+            return a;
         }
 
         public HttpResponseMessage Post(Poll poll)

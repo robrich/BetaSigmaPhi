@@ -14,7 +14,6 @@
 
     @Scripts.Render("~/js/kendouijs")
 
-
     <script>
 
         var serviceUrl = '/api/PollsApi';
@@ -23,7 +22,11 @@
             $("#grid").kendoGrid({
                 height: 400,
                 columns: [
-                     { field: "Name", title: "Name", width: 300 },
+                     { field: "Frequency", title: "Frequency", width: 25 },
+                     { field: "StartDate", title: "StartDate", width: 25 },
+                     { field: "EndDate", title: "EndDate", width: 25 },
+                     { field: "CategoryId", title: "CategoryId", width: 25 },
+                     { field: "VoteCountPerFrequency", title: "VoteCountPerFrequency", width: 25 },
                      { command: ["edit", "destroy"], title: "&nbsp;", width: "35px" }
                 ],
                 pageable: true,
@@ -45,8 +48,12 @@
                         model: {
                             id: "PollId",
                             fields: {
-                                CategoryId: { editable: false, type: "number" },
-                                Name: { validation: { required: true }, type: "string" }
+                                PollId: { editable: false, type: "number" },
+                                Frequency: { editable: true, type: "string" },
+                                StartDate: { editable: true, type: "date" },
+                                EndDate: { editable: true, type: "date" },
+                                CategoryId: { editable: true, type: "number" },
+                                VoteCountPerFrequency: { editable: true, type: "number" }
                             }
                         }
                     },

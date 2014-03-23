@@ -1,11 +1,12 @@
 ﻿namespace BetaSigmaPhi.Web.Models {
+	using System.ComponentModel;
 	using System.ComponentModel.DataAnnotations;
 
 	public class LoginModel {
 
 		[Required]
 		[StringLength( 64 )]
-		public string Username { get; set; }
+		public string Email { get; set; }
 
 		[Required]
 		[StringLength( 64 )]

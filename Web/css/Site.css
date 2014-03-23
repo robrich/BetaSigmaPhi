@@ -16,7 +16,7 @@ footer {
 	margin-top: 1em;
 	padding: 1em;
 	font-size: .8em;
-    height: 30px;
+	height: 30px;
 }
 
 #wrap {
@@ -37,15 +37,10 @@ footer {
 	background-color: #44005b;
 	border-color: #7e00a8;
 }
-      
-/*
-    This is messing up popup boxs in kendoui. Please see Matthew if you need to renable.
-
-    div, p {
+	  
+.CMS div, .CMS p {
 	font-size: 1.05em;
 }
-
-*/
 
 a {
 	color: #660089;

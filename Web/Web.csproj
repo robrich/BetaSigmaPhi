@@ -181,6 +181,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\PollsApiController.cs" />
     <Compile Include="Models\GridHelpers\DataSourceRequest.cs" />
     <Compile Include="Models\GridHelpers\DataSourceResult.cs" />
     <Compile Include="Controllers\DocumentBranchController.cs" />
@@ -1050,6 +1051,7 @@
     <Content Include="Views\Polls\Category.cshtml" />
     <Content Include="Views\Polls\CurrentPolls.cshtml" />
     <Content Include="Views\Tests\Index.cshtml" />
+    <Content Include="Views\Polls\EditPolls.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\kendoui\cultures\kendo.culture.af-ZA.min.js.map" />

@@ -27,10 +27,15 @@ footer {
 	background-color: #44005b;
 	border-color: #7e00a8;
 }
+      
+/*
+    This is messing up popup boxs in kendoui. Please see Matthew if you need to renable.
 
-div, p {
+    div, p {
 	font-size: 1.05em;
 }
+
+*/
 
 a {
 	color: #660089;
@@ -38,6 +43,8 @@ a {
 a:focus, a:hover {
 	color: #7800a1;
 }
+
+
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
 	background-color: #7800a1;
 }
@@ -49,7 +56,7 @@ a:focus, a:hover {
 .btn-primary:focus, .btn-primary:hover {
 	background-color: #9e00d4;
 }
-
+   
 
 /* styles for validation helpers */
 .field-validation-error {

@@ -11,26 +11,34 @@
 <div id="grid"></div>
 
 @section scripts {
-    @Scripts.Render("~/js/kendouijs")
+    
+@Scripts.Render("~/js/kendouijs")
 
 
     <script>
+
+        var serviceUrl = '/api/Category';
+
         $(function () {
             $("#grid").kendoGrid({
                 height: 400,
                 columns: [
-                    "Name"
+                     { field: "Name", title: "Name", width: 300 },
+                     { command: ["edit", "destroy"], title: "&nbsp;", width: "35px" }
                 ],
                 pageable: true,
                 sortable: true,
                 filterable: true,
-                editable: false, // enable editing
-                toolbar: ["create", "save", "cancel"], // specify toolbar commands
+                editable: {
+                    mode: "popup",
+                    confirmation: true
+                },
+                toolbar: ["create"],
                 dataSource: {
                     serverPaging: true,
                     serverFiltering: true,
                     serverSorting: true,
-                    pageSize: 10,
+                    pageSize: 25,
                     schema: {
                         data: "Data",
                         total: "Total",
@@ -45,25 +53,22 @@
                     batch: false,
                     transport: {
                         create: {
-                            url: "/api/Category",
+                            url: serviceUrl,
                             contentType: "application/json",
                             type: "POST"
                         },
                         read: {
-                            url: "/api/Category",
-                            contentType: "application/json"
+                            url: serviceUrl,
+                            contentType: "application/json",
+                            type: "GET"
                         },
                         update: {
-                            url: function (Category) {
-                                return "/api/Category/" + Category.CategoryId;
-                            },
+                            url: serviceUrl,
                             contentType: "application/json",
-                            type: "PUT"
+                            type: "POST"
                         },
                         destroy: {
-                            url: function (Category) {
-                                return "/api/Category/" + Category.CategoryId;
-                            },
+                            url: serviceUrl,
                             contentType: "application/json",
                             type: "DELETE"
                         },
@@ -75,4 +80,5 @@
             });
         });
     </script>
+
 }

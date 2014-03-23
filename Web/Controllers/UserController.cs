@@ -104,6 +104,7 @@ namespace BetaSigmaPhi.Web.Controllers {
 				FirstName = User.FirstName,
 				LastName = User.LastName,
 				IsAdmin = User.IsAdmin,
+				IsElectable = User.IsElectable,
 				IsActive = User.IsActive,
 			};
 			return model;
@@ -113,6 +114,7 @@ namespace BetaSigmaPhi.Web.Controllers {
 			User.FirstName = Model.FirstName;
 			User.LastName = Model.LastName;
 			User.IsAdmin = Model.IsAdmin;
+			User.IsElectable = Model.IsElectable;
 			User.IsActive = Model.IsActive;
 			// Specifically don't set Email and Password -- those are set differently
 		}

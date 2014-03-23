@@ -1040,6 +1040,14 @@
     <Content Include="Views\Polls\Index.cshtml" />
     <Content Include="Views\Polls\Category.cshtml" />
     <Content Include="Views\Polls\CurrentPolls.cshtml" />
+    <Content Include="Views\Polls\Frequencies.cshtml" />
+    <Content Include="Views\Polls\EditFrequency.cshtml" />
+    <Content Include="Views\Polls\DeleteFrequency.cshtml" />
+    <Content Include="Views\Polls\AddFrequency.cshtml" />
+    <Content Include="Views\Polls\GetAllPolls.cshtml" />
+    <Content Include="Views\Polls\EditPoll.cshtml" />
+    <Content Include="Views\Polls\DeletePoll.cshtml" />
+    <Content Include="Views\Polls\AddPoll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\kendoui\cultures\kendo.culture.af-ZA.min.js.map" />

@@ -49,18 +49,48 @@ namespace BetaSigmaPhi.Web.Controllers
 
         }
 
-
-        public HttpResponseMessage Delete(Category category)
+        public HttpResponseMessage Update(int CategoryId, Category category)
         {
-            if (ModelState.IsValid && category.CategoryId > 0)
+            if (ModelState.IsValid && CategoryId == category.CategoryId)
             {
-                categoryRepository.Delete(category.CategoryId);
+                try
+                {
+                    categoryRepository.Save(category);
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             else
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
+
+        }
+
+        public HttpResponseMessage Delete(int CategoryId)
+        {
+
+            Category category = this.categoryRepository.GetById(CategoryId);
+
+            if (category == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+            try
+            {
+                this.categoryRepository.Delete(CategoryId);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, category);
 
         }
 

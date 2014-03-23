@@ -32,7 +32,7 @@
 				Model.Message = null;
 
 				// Attempt the login
-				User user = this.loginService.ValidateUser( Model.Username, Model.Password );
+				User user = this.loginService.ValidateUser( Model.Email, Model.Password );
 				if ( user != null ) {
 					// Login worked
 					this.userIdentityRepository.Login( user.AuthenticationToken, Model.RememberMe );

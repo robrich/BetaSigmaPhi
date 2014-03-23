@@ -26,7 +26,8 @@ USING (VALUES
   (1, N'Weekly'), 
   (2, N'Monthly'), 
   (3, N'Quarterly'), 
-  (4, N'Anually')
+  (4, N'SemiAnually'), 
+  (5, N'Anually')
 ) 
 AS Source (FrequencyId, FrequencyDesc) 
 ON Target.FrequencyId = Source.FrequencyId 

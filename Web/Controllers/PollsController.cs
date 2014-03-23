@@ -67,12 +67,20 @@
             return this.View();
         }
 
+        [RequireAdmin]
         public ActionResult Category()
         {
             return this.View();
         }
 
+        [RequireAdmin]
         public ActionResult EditPolls()
+        {
+            return this.View();
+        }
+
+        [RequireAdmin]
+        public ActionResult Votes()
         {
             return this.View();
         }

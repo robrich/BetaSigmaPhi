@@ -82,6 +82,7 @@ namespace BetaSigmaPhi.Web.Controllers
                             CategoryId = tCategory.CategoryId,
                             Category = tCategory.Name,
                             FrequencyId = (int)tPoll.Frequency,
+                            Frequency = tPoll.Frequency.ToString(),
                             VoteCountPerFrequency = tPoll.VoteCountPerFrequency
                         });
 

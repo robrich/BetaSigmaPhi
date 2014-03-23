@@ -9,6 +9,11 @@ body {
 	padding-top: 50px;
 	padding-bottom: 20px;
 	background-color: #e0b0ff;
+    background-image: url("../img/rose_flowers_plant.png");
+    background-repeat:no-repeat;
+    background-size:cover;
+    display:compact;
+    /*background-size:1440px 800px;*/
 }
 
 footer {

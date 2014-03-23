@@ -17,5 +17,16 @@
             return this.View();
         }
 
+        public ActionResult CurrentPolls()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SubmitPoll()
+        {
+            return View();
+        }
     }
 }

@@ -213,6 +213,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PartialListPageInfo.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UserPollViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1080,6 +1081,7 @@
     <Content Include="js\jquery-2.1.0.min.map" />
     <Content Include="Views\Polls\Index.cshtml" />
     <Content Include="Views\Polls\Category.cshtml" />
+    <Content Include="Views\Polls\CurrentPolls.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\kendoui\cultures\kendo.culture.af-ZA.min.js.map" />

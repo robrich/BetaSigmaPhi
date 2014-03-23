@@ -77,7 +77,7 @@ namespace BetaSigmaPhi.Web.Controllers
                             EndDate = tPoll.EndDate,
                             CategoryId = tCategory.CategoryId,
                             Category = tCategory.Name,
-                            //Rob add Freqnum and name here please
+                            FrequencyId = (int)tPoll.Frequency,
                             VoteCountPerFrequency = tPoll.VoteCountPerFrequency
                         });
 
@@ -98,7 +98,7 @@ namespace BetaSigmaPhi.Web.Controllers
                 o.EndDate = pollModel.EndDate;
                 o.CategoryId = pollModel.CategoryId;
                 o.Category = c;
-                o.Frequency = (Frequency)System.Enum.GetValues(typeof(Frequency)).GetValue(pollModel.FrequencyId);
+                o.Frequency = (Frequency)pollModel.FrequencyId;
                 o.VoteCountPerFrequency = pollModel.VoteCountPerFrequency;
                 pollRepository.Save(o);
 

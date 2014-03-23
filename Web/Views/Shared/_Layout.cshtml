@@ -36,6 +36,7 @@
                         {
                             <li><a href="@Html.JoinUrl(MvcApplication.DOCUMENT_BASE_PATH, node.Slug)">@node.Name</a></li>
                         }
+                        <li>@Html.ActionLink("Polls", "CurrentPolls", "Polls")</li>
                     }
                     @if (Html.CurrentUserIsAdmin())
                     {

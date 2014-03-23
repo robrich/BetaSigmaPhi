@@ -1,6 +1,7 @@
 ﻿namespace BetaSigmaPhi.Repository {
     using BetaSigmaPhi.DataAccess;
     using BetaSigmaPhi.Entity;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -59,7 +60,7 @@
         {
             using (IBetaSigmaPhiContext db = this.BetaSigmaPhiContextFactory.GetContext())
             {
-                List<Poll> activePolls = db.Polls.Where(x => x.IsActive && x.IsOpenForVoting).ToList();
+                List<Poll> activePolls = db.Polls.Where(x => x.IsActive && DateTime.Now >= x.StartDate && DateTime.Now <= x.EndDate).ToList();
                 return activePolls;
             }             
         }

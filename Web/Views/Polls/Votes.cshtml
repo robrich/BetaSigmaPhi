@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "View/Delete Votes";
+}
+
+@section head {
+    @Styles.Render("~/css/kendouicss")
+}
+
+<h2>Admin - View/Delete Votes</h2>
+
+<div id="grid"></div>
+
+@section scripts {
+
+    @Scripts.Render("~/js/kendouijs")
+
+
+    <script>
+
+        var serviceUrl = '/api/Votes';
+
+        $(function () {
+            $("#grid").kendoGrid({
+                height: 400,
+                columns: [
+                     { field: "VoteId", title: "Vote Id", width: 25 },
+                     { field: "PollId", title: "Poll Id", width: 25 },
+                     { field: "VoteDate", title: "Vote Date", format: "{0:MM/dd/yyyy}", width: 25 },
+                     { field: "VoterUserId", title: "Voter User Id", width: 25 },
+                     { field: "ElectedUserId", title: "Elected User Id", width: 25 },
+                     { field: "IsActive", title: "Is Active", width: 25 },
+                     { command: ["edit", "destroy"], title: "&nbsp;", width: 25 }
+                ],
+                pageable: true,
+                sortable: true,
+                filterable: true,
+                editable: {
+                    mode: "popup",
+                    confirmation: true
+                },
+                toolbar: ["create"],
+                dataSource: {
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true,
+                    pageSize: 25,
+                    schema: {
+                        data: "Data",
+                        total: "Total",
+                        model: {
+                            id: "TaskId",
+                            fields: {
+                                VoteId: { editable: false, type: "number" },
+                                PollId: { editable: false, type: "number" },
+                                VoteDate: { editable: false, type: "date" },
+                                VoterUserId: { editable: false, type: "number" },
+                                ElectedUserId: { editable: false, type: "number" },
+                                IsActive: { editable: false, type: "string" }
+                            }
+                        }
+                    },
+                    batch: false,
+                    transport: {                        
+                        read: {
+                            url: serviceUrl,
+                            contentType: "application/json",
+                            type: "GET"
+                        },
+                        destroy: {
+                            url: serviceUrl,
+                            contentType: "application/json",
+                            type: "DELETE"
+                        },
+                        parameterMap: function (data, operation) {
+                            return JSON.stringify(data);
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+}

@@ -77,6 +77,11 @@
             return this.View();
         }
 
+        public ActionResult Votes()
+        {
+            return this.View();
+        }
+
         #region User Polls
         public ActionResult CurrentPolls()
         {

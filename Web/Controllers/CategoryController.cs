@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json;
 using BetaSigmaPhi.Web.Filters;
-using BetaSigmaPhi.Web.Models;
 using BetaSigmaPhi.Repository;
-using BetaSigmaPhi.Service;
 using BetaSigmaPhi.Entity;
 using BetaSigmaPhi.Web.Models.GridHelpers;
 
@@ -21,29 +16,14 @@ namespace BetaSigmaPhi.Web.Controllers
     {
 
         private readonly ICategoryRepository categoryRepository;
-        private readonly IUserRepository userRepository;
-        private readonly IUserIdentityService userService;
 
-        public CategoryController(ICategoryRepository CategoryRepository, IUserIdentityService UserIdentityService, IUserRepository UserRepository)
+        public CategoryController(ICategoryRepository CategoryRepository)
         {
             if (CategoryRepository == null)
             {
                 throw new ArgumentNullException("CategoryRepository");
             }
-
-            if (UserIdentityService == null)
-            {
-                throw new ArgumentNullException("UserIdentityService");
-            }
-
-            if (UserRepository == null)
-            {
-                throw new ArgumentNullException("UserIdentityService");
-            }
-
             this.categoryRepository = CategoryRepository;
-            this.userService = UserIdentityService;
-            this.userRepository = UserRepository;
         }
 
         public DataSourceResult Get(HttpRequestMessage requestMessage)

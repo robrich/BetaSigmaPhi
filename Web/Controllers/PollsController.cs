@@ -109,34 +109,6 @@
         }
         #endregion User Polls
 
-        #region Frequency
-
-        [RequireAdmin]
-        public ActionResult Frequencies()
-        {
-            return View(); 
-        }
-
-        [RequireAdmin]
-        public ActionResult EditFrequency()
-        { 
-            return View(); 
-        }
-
-        [RequireAdmin]
-        public ActionResult DeleteFrequency()
-        { 
-            return View(); 
-        }
-
-        [RequireAdmin]
-        public ActionResult AddFrequency()
-        { 
-            return View(); 
-        }
-
-        #endregion Frequency
-
         #region Admin Polls
 
         [RequireAdmin]

@@ -93,7 +93,18 @@
 
         [HttpPost]
         public ActionResult SubmitPoll()
-        {            
+        {
+            string pollId = this.Request["selectedPollId"];
+            string electedUserId = this.Request["electedUserId"];
+            int currentUser = this.userService.GetCurrentUserId() ?? 0;
+
+            int result = this.voteRepository.Save(new Vote { ElectedUserId = int.Parse(electedUserId), PollId = int.Parse(pollId), VoteDate = DateTime.Now, VoterUserId = currentUser, ModifiedDate = DateTime.Now, CreatedDate = DateTime.Now });
+
+            if (result > 0)
+            {
+                ViewBag.Message = "Your poll is submitted successfully.";
+            }
+
             return View();
         }
         #endregion User Polls

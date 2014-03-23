@@ -18,12 +18,13 @@
                         <div class="form-group">
                             @Html.Label("Elect your choice:", new { @class = "col-md-5 control-label" })
                             <div class="col-md-7">
-                                <select name="electedUser" id="electedUser">
+                                @Html.Hidden("selectedPollId", p.userPoll.PollId)
+                                <select name="electedUserId" id="electedUser">
                                     @if (p.EligibleUsers != null && p.EligibleUsers.Count > 0)
                                     {
                                         foreach (User u in p.EligibleUsers)
                                         {
-                                            <option value="@u.UserId">@u.FirstName &nbsp; @u.LastName</option>
+                                            <option value="@u.UserId">@u.FirstName @u.LastName</option>
                                         }
                                     }
                                 </select>
@@ -33,6 +34,9 @@
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" class="btn btn-default" value="Submit" />
                             </div>
+                        </div>
+                        <div class="row">
+                            @ViewBag.Message
                         </div>
                     }
 

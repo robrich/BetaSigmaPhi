@@ -23,17 +23,25 @@
     document.getElementById('debugDiv').innerHTML = "Debbug - serviceUrl = " + serviceUrl;
     //Debug div
     
+//PollId = tPoll.PollId,
+//CategoryId = tCategory.CategoryId,
+//Category = tCategory.Name,
+//StartDate = tPoll.StartDate,
+//EndDate = tPoll.EndDate
+
     $(function () {
         $("#grid").kendoGrid({
             columns: [
-                 { field: "Frequency", title: "Frequency", width: 25 },
+                 { field: "PollId", title: "PollId", width: 25 },
+                 { field: "Category", title: "Category", width: 25 },
+                 { field: "CategoryId", title: "CategoryId", width: 25 },
+                 { field: "FrequencyId", title: "FrequencyId", width: 25 },
+                 { field: "VoteCountPerFrequency", title: "VoteCountPerFrequency", width: 25 },
                  { field: "StartDate", title: "StartDate", format: "{0:MM/dd/yyyy}", width: 25 },
                  { field: "EndDate", title: "EndDate", format: "{0:MM/dd/yyyy}", width: 25 },
-                 { field: "CategoryId", title: "CategoryId", width: 25 },
-                 { field: "VoteCountPerFrequency", title: "VoteCountPerFrequency", width: 25 },
-                 //{ command: ["edit", "destroy"], title: "&nbsp;", width: "35px" }
-                 { command: { text: "DebugInfo", click: showDebugInfo }, title: " ", width: 25 },
-                 { command: { text: "Edit", click: showDetails }, title: " ", width: 25 }
+                 { command: ["edit", "destroy"], title: "&nbsp;", width: "35px" }
+                 //{ command: { text: "DebugInfo", click: showDebugInfo }, title: " ", width: 25 },
+                 //{ command: { text: "Edit", click: showDetails }, title: " ", width: 25 }
             ],
             pageable: true,
             sortable: false,
@@ -52,13 +60,14 @@
                     data: "Data",
                     total: "Total",
                     model: {
-                        id: "TaskId",
+                        id: "PollId",
                         fields: {
                             PollId: { editable: false, type: "number" },
-                            Frequency: { editable: true, type: "string" },
                             StartDate: { editable: true, type: "date" },
                             EndDate: { editable: true, type: "date" },
+                            Category: { editable: true, type: "text" },
                             CategoryId: { editable: true, type: "number" },
+                            FrequencyId: { editable: true, type: "number" },
                             VoteCountPerFrequency: { editable: true, type: "number" }
                         }
                     }
@@ -85,6 +94,7 @@
                         contentType: "application/json",
                         type: "DELETE"
                     },
+
                     parameterMap: function (data, operation) {
                         return JSON.stringify(data);
                     }

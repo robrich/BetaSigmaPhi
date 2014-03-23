@@ -20,12 +20,24 @@ namespace BetaSigmaPhi.Web.Controllers
     public class PollsApiController : ApiController
     {
         private readonly IPollRepository pollRepository;
+        private readonly ICategoryRepository categoryRepository;
+        private readonly IFrequencyRepository frequencyRepository;
         private readonly IUserRepository userRepository;
         private readonly IUserIdentityService userService;
 
-        public PollsApiController(IPollRepository PollRepository, IUserIdentityService UserIdentityService, IUserRepository UserRepository)
+        public PollsApiController(IPollRepository PollRepository, ICategoryRepository CategoryRepository,  IFrequencyRepository FrequencyRepository, IUserIdentityService UserIdentityService, IUserRepository UserRepository)
         {
             if (PollRepository == null)
+            {
+                throw new ArgumentNullException("CategoryRepository");
+            }
+
+            if (CategoryRepository == null)
+            {
+                throw new ArgumentNullException("CategoryRepository");
+            }
+
+            if (FrequencyRepository == null)
             {
                 throw new ArgumentNullException("CategoryRepository");
             }
@@ -41,6 +53,8 @@ namespace BetaSigmaPhi.Web.Controllers
             }
 
             this.pollRepository = PollRepository;
+            this.categoryRepository = CategoryRepository;
+            this.frequencyRepository = FrequencyRepository;
             this.userService = UserIdentityService;
             this.userRepository = UserRepository;
         }
@@ -49,17 +63,47 @@ namespace BetaSigmaPhi.Web.Controllers
         {
             // The request is in the format GET api/YourController?{take:10,skip:0} and ParseQueryString treats it as a key without value
             DataSourceRequest request = JsonConvert.DeserializeObject<DataSourceRequest>(requestMessage.RequestUri.ParseQueryString().GetKey(0));
-            var a = this.pollRepository.GetActive().AsQueryable().ToDataSourceResult(request.Take, request.Skip, request.Sort, request.Filter);
-            return a;
+
+            //this.pollRepository.GetActive().AsQueryable().ToDataSourceResult(request.Take, request.Skip, request.Sort, request.Filter);
+
+
+            var query = (from tPoll in this.pollRepository.GetActive()
+                        join tCategory in this.categoryRepository.GetActive() on tPoll.CategoryId equals tCategory.CategoryId
+                        //join tFrequency in this.frequencyRepository.GetAll() on tPoll.Frequency equals tFrequency
+                        select new PollModel
+                        {
+                            PollId = tPoll.PollId,
+                            StartDate = tPoll.StartDate,
+                            EndDate = tPoll.EndDate,
+                            CategoryId = tCategory.CategoryId,
+                            Category = tCategory.Name,
+                            //Rob add Freqnum and name here please
+                            VoteCountPerFrequency = tPoll.VoteCountPerFrequency
+                        });
+
+            return query.AsQueryable().ToDataSourceResult(request.Take, request.Skip, request.Sort, request.Filter);
+
+
         }
 
-        public HttpResponseMessage Post(Poll poll)
+        public HttpResponseMessage Post(PollModel pollModel)
         {
+
             if (ModelState.IsValid)
             {
-                pollRepository.Save(poll);
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, poll);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = poll.PollId }));
+                Poll o = new Poll();
+                Category c = this.categoryRepository.GetById(pollModel.CategoryId);
+
+                o.StartDate = pollModel.StartDate;
+                o.EndDate = pollModel.EndDate;
+                o.CategoryId = pollModel.CategoryId;
+                o.Category = c;
+                o.Frequency = (Frequency)System.Enum.GetValues(typeof(Frequency)).GetValue(pollModel.FrequencyId);
+                o.VoteCountPerFrequency = pollModel.VoteCountPerFrequency;
+                pollRepository.Save(o);
+
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, pollModel);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = pollModel.PollId }));
                 return response;
             }
             else
@@ -69,11 +113,11 @@ namespace BetaSigmaPhi.Web.Controllers
 
         }
 
-        public HttpResponseMessage Delete(Poll poll)
+        public HttpResponseMessage Delete(PollModel pollModel)
         {
-            if (ModelState.IsValid && poll.PollId > 0)
+            if (ModelState.IsValid && pollModel.PollId > 0)
             {
-                pollRepository.Delete(poll.PollId);
+                pollRepository.Delete(pollModel.PollId);
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             else

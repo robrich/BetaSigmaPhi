@@ -3,7 +3,7 @@
 		Weekly = 1,
 		Monthly = 2,
 		Quarterly = 3,
-        HalfYearly = 4,
+		SemiAnually = 4,
 		Anually = 5
 	}
 }

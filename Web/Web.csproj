@@ -412,6 +412,7 @@
     <Content Include="img\plusgallery\square.gif" />
     <Content Include="img\plusgallery\square.png" />
     <Content Include="img\plusgallery\zoom-icons.gif" />
+    <Content Include="img\rose_flowers_plant.png" />
     <Content Include="js\ckeditorify.js" />
     <Content Include="js\ckeditor_4.3.3_custom\adapters\jquery.js" />
     <Content Include="js\ckeditor_4.3.3_custom\build-config.js" />

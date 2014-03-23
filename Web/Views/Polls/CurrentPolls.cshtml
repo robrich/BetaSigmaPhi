@@ -1,31 +1,44 @@
-﻿@model List<BetaSigmaPhi.Entity.Poll>
+﻿@model PollsWithEligibleUsersViewModel
 @{
     ViewBag.Title = "Current Polls";
 }
 
-<h2>CurrentPolls</h2>
-
-<div class="row">
-    @*@foreach (BetaSigmaPhi.Entity.Poll p in Model)
-    {
-        <div class="col-md-3"> 
-            @using (Html.BeginForm("SubmitPoll", "Polls", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+<div class="container">
+    <h2>Current Polls</h2>
+    <div class="row">
+        @if (Model != null && Model.avaiablePollsWithEligibleUsers != null && Model.avaiablePollsWithEligibleUsers.Count > 0)
+        {
+            foreach (PollWithEligibleUsers p in Model.avaiablePollsWithEligibleUsers)
             {
-                <h4>@p.Category.Name</h4>
-                <hr />
-                <div class="form-group">
-                    @Html.Label("Elect your choice:", new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" class="btn btn-default" value="Submit" />
-                    </div>
+                <div class="col-md-3">
+                    @using (Html.BeginForm("SubmitPoll", "Polls", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        <h4>@p.userPoll.Category.Name</h4>
+                        <hr />
+                        <div class="form-group">
+                            @Html.Label("Elect your choice:", new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                <select name="electedUser" id="electedUser">
+                                    @foreach (User u in p.EligibleUsers)
+                                    {
+                                        <option value="@u.UserId">@u.FirstName + " " + @u.LastName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" class="btn btn-default" value="Submit" />
+                            </div>
+                        </div>
+                    }
+
                 </div>
             }
-
-        </div>
-    }*@
+        }
+        else
+        {
+            <div class="col-md-3">No active polls available.</div>
+        }
+    </div>
 </div>

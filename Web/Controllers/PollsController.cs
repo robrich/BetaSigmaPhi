@@ -61,11 +61,12 @@
 
                 User previousWinner = this.pollRepository.GetWinnerForPreviousPoll(p.PollId);
                 int? userId = this.userService.GetCurrentUserId();
-                List<User> eligibleUsers = this.userRepository.GetAll().Where(x => x.UserId != userId && x.UserId != previousWinner.UserId).ToList();
+                List<User> eligibleUsers = this.userRepository.GetEligableUsers(previousWinner == null ? 0 : previousWinner.UserId, userId ?? 0);
                 pWithUsers.EligibleUsers = eligibleUsers;
+                polls.avaiablePollsWithEligibleUsers.Add(pWithUsers);
             }
 
-            return View();
+            return View(polls);
         }
 
         [HttpPost]

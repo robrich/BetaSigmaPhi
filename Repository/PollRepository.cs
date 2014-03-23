@@ -9,7 +9,6 @@
         User GetWinnerForPoll(int PollId);
         User GetWinnerForPreviousPoll(int currentPollId);
         List<Poll> GetActivePolls();
-        bool HasReachedPollingLimit(int pollId, int userId);
 	}
 
 	public class PollRepository : Repository<Poll>, IPollRepository {
@@ -63,12 +62,6 @@
                 List<Poll> activePolls = db.Polls.Where(x => x.IsActive && DateTime.Now >= x.StartDate && DateTime.Now <= x.EndDate).ToList();
                 return activePolls;
             }             
-        }
-
-        public bool HasReachedPollingLimit(int pollId, int userId)
-        {
-            //TODO: Pending changes from Rob
-            return false;
         }
     }
 }

@@ -13,10 +13,10 @@
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) http://ckeditor.com/builder/433bcb042fd12d9f7d52c4c4ff1d52da
+ * (2) http://ckeditor.com/builder/840621e83e856809f169d387d176d42c
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) http://ckeditor.com/builder/download/433bcb042fd12d9f7d52c4c4ff1d52da
+ * (3) http://ckeditor.com/builder/download/840621e83e856809f169d387d176d42c
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -26,7 +26,7 @@
 
 var CKBUILDER_CONFIG = {
 	skin: 'moono',
-	preset: 'standard',
+	preset: 'full',
 	ignore: [
 		'dev',
 		'.gitignore',
@@ -38,23 +38,23 @@ var CKBUILDER_CONFIG = {
 		'a11yhelp' : 1,
 		'about' : 1,
 		'basicstyles' : 1,
-		'blockquote' : 1,
 		'clipboard' : 1,
 		'contextmenu' : 1,
-		'elementspath' : 1,
+		'dialogadvtab' : 1,
+		'div' : 1,
+		'divarea' : 1,
 		'enterkey' : 1,
-		'entities' : 1,
-		'filebrowser' : 1,
-		'floatingspace' : 1,
+		'find' : 1,
+		'font' : 1,
 		'format' : 1,
 		'horizontalrule' : 1,
-		'htmlwriter' : 1,
 		'image' : 1,
+		'indentblock' : 1,
 		'indentlist' : 1,
+		'justify' : 1,
 		'link' : 1,
 		'list' : 1,
-		'magicline' : 1,
-		'maximize' : 1,
+		'liststyle' : 1,
 		'pastefromword' : 1,
 		'pastetext' : 1,
 		'removeformat' : 1,
@@ -68,8 +68,7 @@ var CKBUILDER_CONFIG = {
 		'tabletools' : 1,
 		'toolbar' : 1,
 		'undo' : 1,
-		'wsc' : 1,
-		'wysiwygarea' : 1
+		'wsc' : 1
 	},
 	languages : {
 		'en' : 1

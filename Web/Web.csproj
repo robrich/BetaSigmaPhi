@@ -212,6 +212,7 @@
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PartialListPageInfo.cs" />
+    <Compile Include="Models\PollsWithEligibleUsersViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserPollViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

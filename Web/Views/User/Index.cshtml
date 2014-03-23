@@ -30,6 +30,7 @@
 					<th>Email</th>
 					<th>First Name</th>
 					<th>Last Name</th>
+					<th>IsElectable</th>
 					<th>Admin</th>
 					<th>Active</th>
 					<th>Delete</th>
@@ -41,6 +42,7 @@
 						<td>@Html.ActionLink(user.Email, "Edit", "User", new { id = user.UserId }, null)</td>
 						<td>@user.FirstName</td>
 						<td>@user.LastName</td>
+						<td>@(user.IsElectable ? "Yes" : "No")</td>
 						<td>@(user.IsAdmin ? "Yes" : "No")</td>
 						<td>@(user.IsActive ? "Yes" : "No")</td>
 						<td>@Html.ActionLink("Delete", "Delete", "User", new { id = user.UserId }, null)</td>

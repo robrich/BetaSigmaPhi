@@ -22,6 +22,8 @@
 
 		public bool IsAdmin { get; set; }
 
+		public bool IsElectable { get; set; }
+
 		public bool IsActive { get; set; }
 
 	}

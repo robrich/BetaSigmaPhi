@@ -1,74 +1,84 @@
 ﻿@{
-    ViewBag.Title = "Category";
+    ViewBag.Title = "Polls Tools";
 }
 
 @section head {
-@Styles.Render("~/css/kendouicss")
+    @Styles.Render("~/css/kendouicss")
 }
 
-<h2>Category</h2>
+<h2>Admin - Add/Edit/Update Categories</h2>
 
 <div id="grid"></div>
 
 @section scripts {
+    
 @Scripts.Render("~/js/kendouijs")
-<script>
-    $(document).ready(function () {
-        var crudServiceBaseUrl = "http://demos.telerik.com/kendo-ui/service",
-            dataSource = new kendo.data.DataSource({
-                transport: {
-                    read: {
-                        url: crudServiceBaseUrl + "/Products",
-                        dataType: "jsonp"
-                    },
-                    update: {
-                        url: crudServiceBaseUrl + "/Products/Update",
-                        dataType: "jsonp"
-                    },
-                    destroy: {
-                        url: crudServiceBaseUrl + "/Products/Destroy",
-                        dataType: "jsonp"
-                    },
-                    create: {
-                        url: crudServiceBaseUrl + "/Products/Create",
-                        dataType: "jsonp"
-                    },
-                    parameterMap: function (options, operation) {
-                        if (operation !== "read" && options.models) {
-                            return { models: kendo.stringify(options.models) };
-                        }
-                    }
+
+
+    <script>
+
+        var serviceUrl = '/api/Category';
+
+        $(function () {
+            $("#grid").kendoGrid({
+                height: 400,
+                columns: [
+                     { field: "Name", title: "Name", width: 300 },
+                     { command: ["edit", "destroy"], title: "&nbsp;", width: "35px" }
+                ],
+                pageable: true,
+                sortable: true,
+                filterable: true,
+                editable: {
+                    mode: "popup",
+                    confirmation: true
                 },
-                batch: true,
-                pageSize: 20,
-                schema: {
-                    model: {
-                        id: "ProductID",
-                        fields: {
-                            ProductID: { editable: false, nullable: true },
-                            ProductName: { validation: { required: true } },
-                            UnitPrice: { type: "number", validation: { required: true, min: 1 } },
-                            Discontinued: { type: "boolean" },
-                            UnitsInStock: { type: "number", validation: { min: 0, required: true } }
+                toolbar: ["create"],
+                dataSource: {
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true,
+                    pageSize: 25,
+                    schema: {
+                        data: "Data",
+                        total: "Total",
+                        model: {
+                            id: "CategoryId",
+                            fields: {
+                                CategoryId: { editable: false, type: "number" },
+                                Name: { validation: { required: true }, type: "string" }
+                            }
+                        }
+                    },
+                    batch: false,
+                    transport: {
+                        create: {
+                            url: serviceUrl,
+                            contentType: "application/json",
+                            type: "POST"
+                        },
+                        read: {
+                            url: serviceUrl,
+                            contentType: "application/json",
+                            type: "GET"
+                        },
+                        update: {
+                            url: serviceUrl,
+                            contentType: "application/json",
+                            type: "POST"
+                        },
+                        destroy: {
+                            url: serviceUrl,
+                            contentType: "application/json",
+                            type: "DELETE"
+                        },
+                        parameterMap: function (data, operation) {
+                            return JSON.stringify(data);
                         }
                     }
                 }
             });
-
-        $("#grid").kendoGrid({
-            dataSource: dataSource,
-            navigatable: true,
-            pageable: true,
-            height: 430,
-            toolbar: ["create", "save", "cancel"],
-            columns: [
-                "ProductName",
-                { field: "UnitPrice", title: "Unit Price", format: "{0:c}", width: 110 },
-                { field: "UnitsInStock", title: "Units In Stock", width: 110 },
-                { field: "Discontinued", width: 110 },
-                { command: "destroy", title: "&nbsp;", width: 90 }],
-            editable: true
         });
-    });
-</script>
+    </script>
+
 }

@@ -1,6 +1,7 @@
 ﻿namespace BetaSigmaPhi.Repository {
     using BetaSigmaPhi.DataAccess;
     using BetaSigmaPhi.Entity;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -8,7 +9,6 @@
         User GetWinnerForPoll(int PollId);
         User GetWinnerForPreviousPoll(int currentPollId);
         List<Poll> GetActivePolls();
-        bool HasReachedPollingLimit(int pollId, int userId);
 	}
 
 	public class PollRepository : Repository<Poll>, IPollRepository {
@@ -59,15 +59,9 @@
         {
             using (IBetaSigmaPhiContext db = this.BetaSigmaPhiContextFactory.GetContext())
             {
-                List<Poll> activePolls = db.Polls.Where(x => x.IsActive && x.IsOpenForVoting).ToList();
+                List<Poll> activePolls = db.Polls.Where(x => x.IsActive && DateTime.Now >= x.StartDate && DateTime.Now <= x.EndDate).ToList();
                 return activePolls;
             }             
-        }
-
-        public bool HasReachedPollingLimit(int pollId, int userId)
-        {
-            //TODO: Pending changes from Rob
-            return false;
         }
     }
 }

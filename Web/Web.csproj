@@ -83,6 +83,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.0\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Extensions, Version=2.2.13.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Net.Http.2.2.13\lib\net45\System.Net.Http.Extensions.dll</HintPath>
@@ -177,14 +180,21 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\PollsApiController.cs" />
+    <Compile Include="Models\GridHelpers\DataSourceRequest.cs" />
+    <Compile Include="Models\GridHelpers\DataSourceResult.cs" />
     <Compile Include="Controllers\DocumentBranchController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\DocumentLeafController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ErrorLogController.cs" />
+    <Compile Include="Models\GridHelpers\Filter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PollsController.cs" />
+    <Compile Include="Models\GridHelpers\QueryableExtensions.cs" />
+    <Compile Include="Models\GridHelpers\Sort.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\DocumentSlugExistsConstraint.cs" />
     <Compile Include="Filters\HandleAndLogErrorAttribute.cs" />
@@ -212,6 +222,7 @@
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PartialListPageInfo.cs" />
+    <Compile Include="Models\PollsWithEligibleUsersViewModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserPollViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -402,12 +413,10 @@
     <Content Include="js\ckeditorify.js" />
     <Content Include="js\ckeditor_4.3.3_custom\adapters\jquery.js" />
     <Content Include="js\ckeditor_4.3.3_custom\build-config.js" />
-    <Content Include="js\ckeditor_4.3.3_custom\CHANGES.md" />
     <Content Include="js\ckeditor_4.3.3_custom\ckeditor.js" />
     <Content Include="js\ckeditor_4.3.3_custom\config.js" />
     <Content Include="js\ckeditor_4.3.3_custom\contents.css" />
     <Content Include="js\ckeditor_4.3.3_custom\lang\en.js" />
-    <Content Include="js\ckeditor_4.3.3_custom\LICENSE.md" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\a11yhelp\dialogs\a11yhelp.js" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\a11yhelp\dialogs\lang\ar.js" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\a11yhelp\dialogs\lang\bg.js" />
@@ -480,8 +489,6 @@
     <Content Include="js\ckeditor_4.3.3_custom\plugins\link\dialogs\link.js" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\link\images\anchor.png" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\link\images\hidpi\anchor.png" />
-    <Content Include="js\ckeditor_4.3.3_custom\plugins\magicline\images\hidpi\icon.png" />
-    <Content Include="js\ckeditor_4.3.3_custom\plugins\magicline\images\icon.png" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\pastefromword\filter\default.js" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\scayt\dialogs\options.js" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\scayt\dialogs\toolbar.css" />
@@ -544,45 +551,6 @@
     <Content Include="js\ckeditor_4.3.3_custom\plugins\wsc\dialogs\wsc_ie.js" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\wsc\LICENSE.md" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\wsc\README.md" />
-    <Content Include="js\ckeditor_4.3.3_custom\README.md" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\ajax.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\api.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\appendto.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\assets\inlineall\logo.png" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\assets\outputxhtml\outputxhtml.css" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\assets\posteddata.php" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\assets\sample.css" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\assets\sample.jpg" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\assets\uilanguages\languages.js" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\datafiltering.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\divreplace.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\index.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\inlineall.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\inlinebycode.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\inlinetextarea.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\jquery.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\dialog\assets\my_dialog.js" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\dialog\dialog.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\divarea\divarea.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\enterkey\enterkey.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.swf" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\htmlwriter\assets\outputforflash\swfobject.js" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\htmlwriter\outputforflash.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\htmlwriter\outputhtml.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\magicline\magicline.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\toolbar\toolbar.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\wysiwygarea\fullpage.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\readonly.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\replacebyclass.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\replacebycode.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\sample.css" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\sample.js" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\sample_posteddata.php" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\tabindex.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\uicolor.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\uilanguages.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\xhtmlstyle.html" />
     <Content Include="js\ckeditor_4.3.3_custom\skins\moono\dialog.css" />
     <Content Include="js\ckeditor_4.3.3_custom\skins\moono\dialog_ie.css" />
     <Content Include="js\ckeditor_4.3.3_custom\skins\moono\dialog_ie7.css" />
@@ -1082,6 +1050,8 @@
     <Content Include="Views\Polls\Index.cshtml" />
     <Content Include="Views\Polls\Category.cshtml" />
     <Content Include="Views\Polls\CurrentPolls.cshtml" />
+    <Content Include="Views\Tests\Index.cshtml" />
+    <Content Include="Views\Polls\EditPolls.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\kendoui\cultures\kendo.culture.af-ZA.min.js.map" />

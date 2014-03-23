@@ -1,0 +1,221 @@
+﻿@{
+    ViewBag.Title = "Polls Tools";
+}
+
+@section head {
+    @Styles.Render("~/css/kendouicss")
+}
+
+<h2>Admin - Add/Edit/Update Polls</h2>
+<div id="debugDiv"></div>
+<div id="grid"></div>
+
+@section scripts {
+
+    @Scripts.Render("~/js/kendouijs")
+
+<script>
+
+    var serviceUrl = '/api/PollsApi/';
+    var wnd, detailsTemplate;
+
+    //Debug div
+    document.getElementById('debugDiv').innerHTML = "Debbug - serviceUrl = " + serviceUrl;
+    //Debug div
+    
+    $(function () {
+        $("#grid").kendoGrid({
+            columns: [
+                 { field: "Frequency", title: "Frequency", width: 25 },
+                 { field: "StartDate", title: "StartDate", format: "{0:MM/dd/yyyy}", width: 25 },
+                 { field: "EndDate", title: "EndDate", format: "{0:MM/dd/yyyy}", width: 25 },
+                 { field: "CategoryId", title: "CategoryId", width: 25 },
+                 { field: "VoteCountPerFrequency", title: "VoteCountPerFrequency", width: 25 },
+                 //{ command: ["edit", "destroy"], title: "&nbsp;", width: "35px" }
+                 { command: { text: "DebugInfo", click: showDebugInfo }, title: " ", width: 25 },
+                 { command: { text: "Edit", click: showDetails }, title: " ", width: 25 }
+            ],
+            pageable: true,
+            sortable: false,
+            filterable: false,
+            editable: {
+                mode: "popup",
+                confirmation: false
+            },
+            toolbar: ["create"],
+            dataSource: {
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+                pageSize: 5,
+                schema: {
+                    data: "Data",
+                    total: "Total",
+                    model: {
+                        id: "TaskId",
+                        fields: {
+                            PollId: { editable: false, type: "number" },
+                            Frequency: { editable: true, type: "string" },
+                            StartDate: { editable: true, type: "date" },
+                            EndDate: { editable: true, type: "date" },
+                            CategoryId: { editable: true, type: "number" },
+                            VoteCountPerFrequency: { editable: true, type: "number" }
+                        }
+                    }
+                },
+                batch: false,
+                transport: {
+                    create: {
+                        url: serviceUrl,
+                        contentType: "application/json",
+                        type: "POST"
+                    },
+                    read: {
+                        url: serviceUrl,
+                        contentType: "application/json",
+                        type: "GET"
+                    },
+                    update: {
+                        url: serviceUrl,
+                        contentType: "application/json",
+                        type: "POST"
+                    },
+                    destroy: {
+                        url: serviceUrl,
+                        contentType: "application/json",
+                        type: "DELETE"
+                    },
+                    parameterMap: function (data, operation) {
+                        return JSON.stringify(data);
+                    }
+                }
+
+            }
+
+        });
+
+        wnd = $("#details")
+                    .kendoWindow({
+                        title: "Polls Details",
+                        modal: true,
+                        visible: false,
+                        resizable: false,
+                        width: 300
+                    }).data("kendoWindow");
+
+        detailsTemplate = kendo.template($("#template").html());
+
+    });
+
+    function showDetails(e) {
+        e.preventDefault();
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        wnd.content(detailsTemplate(dataItem));
+        wnd.center().open();
+    };
+
+    function showDebugInfo(e) {
+        var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+        document.getElementById('debugDiv').innerHTML =
+            "Debbug - serviceUrl = " + serviceUrl + " " +
+            "<br/>PolId=" + dataItem.PollId +
+            "<br/>CategoryId=" + dataItem.CategoryId +
+            "<br/>StartDate=" + dataItem.StartDate +
+            "<br/>EndDate=" + dataItem.EndDate +
+            "<br/>VoteCountPerFrequency=" + dataItem.VoteCountPerFrequency;
+
+        //Need to update and correct FrequencyId from string to number in the controller
+        //"<br/>FrequencyId=" + dataItem.FrequencyId;
+        //alert(dataItem.PollId);
+    };
+
+</script>
+
+<script type="text/x-kendo-template" id="template">
+    <div id="details-container">
+        <dl>
+            <dt>PollId: #= PollId #</dt>
+        </dl>
+    </div>
+</script>
+
+}
+
+
+
+
+
+@*
+    <script>
+    var serviceUrl = '/api/PollsApi';
+    $(function () {
+        $("#grid").kendoGrid({
+            height: 400,
+            columns: [
+                 { field: "Frequency", title: "Frequency", width: 25 },
+                 { field: "StartDate", title: "StartDate", width: 25 },
+                 { field: "EndDate", title: "EndDate", width: 25 },
+                 { field: "CategoryId", title: "CategoryId", width: 25 },
+                 { field: "VoteCountPerFrequency", title: "VoteCountPerFrequency", width: 25 },
+                 { command: ["edit", "destroy"], title: "&nbsp;", width: "35px" }
+            ],
+            pageable: true,
+            sortable: true,
+            filterable: true,
+            editable: {
+                mode: "popup",
+                confirmation: true
+            },
+            toolbar: ["create"],
+            dataSource: {
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+                pageSize: 25,
+                schema: {
+                    data: "Data",
+                    total: "Total",
+                    model: {
+                        id: "PollId",
+                        fields: {
+                            PollId: { editable: false, type: "number" },
+                            Frequency: { editable: true, type: "string" },
+                            StartDate: { editable: true, type: "date" },
+                            EndDate: { editable: true, type: "date" },
+                            CategoryId: { editable: true, type: "number" },
+                            VoteCountPerFrequency: { editable: true, type: "number" }
+                        }
+                    }
+                },
+                batch: false,
+                transport: {
+                    create: {
+                        url: serviceUrl,
+                        contentType: "application/json",
+                        type: "POST"
+                    },
+                    read: {
+                        url: serviceUrl,
+                        contentType: "application/json",
+                        type: "GET"
+                    },
+                    update: {
+                        url: serviceUrl,
+                        contentType: "application/json",
+                        type: "POST"
+                    },
+                    destroy: {
+                        url: serviceUrl,
+                        contentType: "application/json",
+                        type: "DELETE"
+                    },
+                    parameterMap: function (data, operation) {
+                        return JSON.stringify(data);
+                    }
+                }
+            }
+        });
+    });
+</script>
+    
+*@

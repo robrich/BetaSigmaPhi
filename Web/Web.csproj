@@ -480,8 +480,6 @@
     <Content Include="js\ckeditor_4.3.3_custom\plugins\link\dialogs\link.js" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\link\images\anchor.png" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\link\images\hidpi\anchor.png" />
-    <Content Include="js\ckeditor_4.3.3_custom\plugins\magicline\images\hidpi\icon.png" />
-    <Content Include="js\ckeditor_4.3.3_custom\plugins\magicline\images\icon.png" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\pastefromword\filter\default.js" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\scayt\dialogs\options.js" />
     <Content Include="js\ckeditor_4.3.3_custom\plugins\scayt\dialogs\toolbar.css" />

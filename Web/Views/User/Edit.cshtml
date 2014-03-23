@@ -46,6 +46,12 @@
 				@Html.EditorFor(model => model.Password)
 				@Html.ValidationMessageFor(model => model.Password)
 			</div>
+			
+			<div class="editor-field">
+				<input type="checkbox" id="IsElectable" name="IsElectable" value="true" checked="@Model.IsElectable" />
+				@Html.LabelFor(model => model.IsElectable)
+				@Html.ValidationMessageFor(model => model.IsElectable)
+			</div>
 
 			<div class="editor-field">
 				<input type="checkbox" id="IsAdmin" name="IsAdmin" value="true" checked="@Model.IsAdmin" />

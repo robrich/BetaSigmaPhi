@@ -71,6 +71,7 @@
                     where u.IsActive
                     && u.UserId != CurrentUserId
                     && u.UserId != PreviousWinnerId
+                    && u.IsElectable
                     select u
                 ).ToList();
             }

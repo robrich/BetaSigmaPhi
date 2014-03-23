@@ -1048,6 +1048,10 @@
     <Content Include="Views\Polls\EditPoll.cshtml" />
     <Content Include="Views\Polls\DeletePoll.cshtml" />
     <Content Include="Views\Polls\AddPoll.cshtml" />
+    <Content Include="Views\Polls\GetCategories.cshtml" />
+    <Content Include="Views\Polls\EditCategory.cshtml" />
+    <Content Include="Views\Polls\DeleteCategory.cshtml" />
+    <Content Include="Views\Polls\AddCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\kendoui\cultures\kendo.culture.af-ZA.min.js.map" />

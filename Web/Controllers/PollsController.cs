@@ -67,11 +67,6 @@
             return this.View();
         }
 
-        public ActionResult Category()
-        {
-            return this.View();
-        }
-
         #region User Polls
         public ActionResult CurrentPolls()
         {
@@ -104,7 +99,7 @@
 
         [RequireAdmin]
         public ActionResult Frequencies()
-        { 
+        {
             return View(); 
         }
 
@@ -133,7 +128,7 @@
         [RequireAdmin]
         public ActionResult GetAllPolls()
         {
-            List<Poll> allPolls = this.pollRepository.GetAll();
+            List<Poll> allPolls = this.pollRepository.GetActive();
             return View(allPolls); 
         }
 
@@ -165,5 +160,59 @@
         }
 
         #endregion Admin Polls
+
+        #region Category
+
+        [RequireAdmin]
+        public ActionResult GetCategories()
+        {
+            List<Category> allCategories = this.categoryRepository.GetAll();
+            return View(allCategories);
+        }
+
+        [RequireAdmin]
+        public ActionResult EditCategory(int CategoryId)
+        {
+            return View();
+        }
+
+        [RequireAdmin]
+        [HttpPost]
+        public ActionResult DeleteCategory(int CategoryId)
+        {
+            return View();
+        }
+
+        [RequireAdmin]
+        public ActionResult AddCategory()
+        {
+            return View();
+        }
+
+        [RequireAdmin]
+        [HttpPost]
+        [ActionName("AddCategory")]
+        public ActionResult AddCategoryPost()
+        {
+            return View();
+        }
+
+        #endregion Category
+
+        #region Votes
+
+        [RequireAdmin]
+        public ActionResult GetAllVotes(int PollId)
+        {
+            return View();
+        }
+
+        [RequireAdmin]
+        public ActionResult GetWinnerForPoll(int PollId)
+        {
+            return View();
+        }
+
+        #endregion Votes
     }
 }

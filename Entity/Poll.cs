@@ -5,6 +5,11 @@
 
 	public class Poll : IEntity {
 
+		public Poll()  {
+			this.Frequency = Frequency.Quarterly;
+			this.VoteCountPerFrequency = 1;
+		}
+
 		[Key]
 		public int PollId {
 			get { return this.Id; }
@@ -16,6 +21,8 @@
 
 		[Column("FrequencyId")]
 		public Frequency Frequency { get; set; }
+
+		public int VoteCountPerFrequency { get; set; }
 
 		public DateTime StartDate { get; set; }
 		public DateTime EndDate { get; set; }

@@ -563,11 +563,6 @@
     <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\dialog\dialog.html" />
     <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\divarea\divarea.html" />
     <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\enterkey\enterkey.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.swf" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\htmlwriter\assets\outputforflash\swfobject.js" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\htmlwriter\outputforflash.html" />
-    <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\htmlwriter\outputhtml.html" />
     <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\magicline\magicline.html" />
     <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\toolbar\toolbar.html" />
     <Content Include="js\ckeditor_4.3.3_custom\samples\plugins\wysiwygarea\fullpage.html" />

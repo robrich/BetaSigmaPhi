@@ -6,7 +6,7 @@ namespace BetaSigmaPhi.Web.Models.GridHelpers
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
-    using System.Linq.Dynamic;
+    using System.Linq.Dynamic; //Nuget package PM > Install-Package System.Linq.Dynamic
 
     public static class QueryableExtensions
     {

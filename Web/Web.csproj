@@ -194,8 +194,6 @@
     <Compile Include="Controllers\PollsController.cs" />
     <Compile Include="Models\GridHelpers\QueryableExtensions.cs" />
     <Compile Include="Models\GridHelpers\Sort.cs" />
-    <Compile Include="Controllers\TestsController.cs" />
-    <Compile Include="Controllers\TestsXController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\DocumentSlugExistsConstraint.cs" />
     <Compile Include="Filters\HandleAndLogErrorAttribute.cs" />

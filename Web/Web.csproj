@@ -83,6 +83,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.0\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Extensions, Version=2.2.13.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Net.Http.2.2.13\lib\net45\System.Net.Http.Extensions.dll</HintPath>
@@ -177,14 +180,22 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Models\GridHelpers\DataSourceRequest.cs" />
+    <Compile Include="Models\GridHelpers\DataSourceResult.cs" />
     <Compile Include="Controllers\DocumentBranchController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\DocumentLeafController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ErrorLogController.cs" />
+    <Compile Include="Models\GridHelpers\Filter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PollsController.cs" />
+    <Compile Include="Models\GridHelpers\QueryableExtensions.cs" />
+    <Compile Include="Models\GridHelpers\Sort.cs" />
+    <Compile Include="Controllers\TestsController.cs" />
+    <Compile Include="Controllers\TestsXController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\DocumentSlugExistsConstraint.cs" />
     <Compile Include="Filters\HandleAndLogErrorAttribute.cs" />
@@ -1040,18 +1051,7 @@
     <Content Include="Views\Polls\Index.cshtml" />
     <Content Include="Views\Polls\Category.cshtml" />
     <Content Include="Views\Polls\CurrentPolls.cshtml" />
-    <Content Include="Views\Polls\Frequencies.cshtml" />
-    <Content Include="Views\Polls\EditFrequency.cshtml" />
-    <Content Include="Views\Polls\DeleteFrequency.cshtml" />
-    <Content Include="Views\Polls\AddFrequency.cshtml" />
-    <Content Include="Views\Polls\GetAllPolls.cshtml" />
-    <Content Include="Views\Polls\EditPoll.cshtml" />
-    <Content Include="Views\Polls\DeletePoll.cshtml" />
-    <Content Include="Views\Polls\AddPoll.cshtml" />
-    <Content Include="Views\Polls\GetCategories.cshtml" />
-    <Content Include="Views\Polls\EditCategory.cshtml" />
-    <Content Include="Views\Polls\DeleteCategory.cshtml" />
-    <Content Include="Views\Polls\AddCategory.cshtml" />
+    <Content Include="Views\Tests\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\kendoui\cultures\kendo.culture.af-ZA.min.js.map" />

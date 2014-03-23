@@ -27,9 +27,10 @@
                      { field: "PollId", title: "Poll Id", width: 25 },
                      { field: "VoteDate", title: "Vote Date", format: "{0:MM/dd/yyyy}", width: 25 },
                      { field: "VoterUserId", title: "Voter User Id", width: 25 },
+                     { field: "VoterUser", title: "Voter", width: 25 },
                      { field: "ElectedUserId", title: "Elected User Id", width: 25 },
-                     { field: "IsActive", title: "Is Active", width: 25 },
-                     { command: ["edit", "destroy"], title: "&nbsp;", width: 25 }
+                     { field: "ElectedUser", title: "Elected User", width: 25 },
+                     { command: ["destroy"], title: "&nbsp;", width: 25 }
                 ],
                 pageable: true,
                 sortable: true,
@@ -38,7 +39,7 @@
                     mode: "popup",
                     confirmation: true
                 },
-                toolbar: ["create"],
+                //toolbar: ["create"],
                 dataSource: {
                     serverPaging: true,
                     serverFiltering: true,
@@ -54,8 +55,9 @@
                                 PollId: { editable: false, type: "number" },
                                 VoteDate: { editable: false, type: "date" },
                                 VoterUserId: { editable: false, type: "number" },
+                                VoterUser: { editable: false, type: "text" },
                                 ElectedUserId: { editable: false, type: "number" },
-                                IsActive: { editable: false, type: "string" }
+                                ElectedUser: { editable: false, type: "text" }
                             }
                         }
                     },

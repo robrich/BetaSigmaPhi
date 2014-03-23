@@ -23,5 +23,22 @@ namespace BetaSigmaPhi.Web.Models
 
     }
 
+    public class VoteModel
+    {
+        public int VoteId { get; set; }
+
+        public int PollId { get; set; }
+
+        public DateTime VoteDate { get; set; }
+
+        public int VoterUserId { get; set; }
+        
+        public string VoterUser { get; set; }
+
+        public int ElectedUserId { get; set; }
+        
+        public string ElectedUser { get; set; }
+    }
+
 }
 

@@ -23,8 +23,10 @@ namespace BetaSigmaPhi.Web.Controllers
         private readonly IVoteRepository voteRepository;
         private readonly IUserRepository userRepository;
         private readonly IUserIdentityService userService;
+        private readonly ICategoryRepository categoryRepository;
 
-        public VotesController(IPollRepository PollRepository, IUserIdentityService UserIdentityService, IUserRepository UserRepository, IVoteRepository VoteRepository)
+        public VotesController(IPollRepository PollRepository, IUserIdentityService UserIdentityService,
+            IUserRepository UserRepository, IVoteRepository VoteRepository, ICategoryRepository CategoryRepository)
         {
             if (PollRepository == null)
             {
@@ -46,25 +48,48 @@ namespace BetaSigmaPhi.Web.Controllers
                 throw new ArgumentNullException("VoteRepository");
             }
 
+            if (CategoryRepository == null)
+            {
+                throw new ArgumentNullException("CategoryRepository");
+            }
+
             this.pollRepository = PollRepository;
             this.userService = UserIdentityService;
             this.userRepository = UserRepository;
-            this.voteRepository = VoteRepository; 
+            this.voteRepository = VoteRepository;
+            this.categoryRepository = CategoryRepository;
         }
 
         public DataSourceResult Get(HttpRequestMessage requestMessage)
         {
             // The request is in the format GET api/YourController?{take:10,skip:0} and ParseQueryString treats it as a key without value
             DataSourceRequest request = JsonConvert.DeserializeObject<DataSourceRequest>(requestMessage.RequestUri.ParseQueryString().GetKey(0));
-            var a = this.voteRepository.GetActive().AsQueryable().ToDataSourceResult(request.Take, request.Skip, request.Sort, request.Filter);
-            return a;
+            var a = this.voteRepository.GetActive();
+
+            //return a;
+
+            var query = (from tVote in this.voteRepository.GetActive()
+                         join tUser in this.userRepository.GetActive() on tVote.VoterUserId equals tUser.UserId
+                         join tElectedUser in this.userRepository.GetActive() on tVote.ElectedUserId equals tElectedUser.UserId
+                         select new VoteModel
+                         {
+                             ElectedUser = tElectedUser.FirstName + " " + tElectedUser.LastName,
+                             ElectedUserId = tVote.ElectedUserId,
+                             PollId = tVote.PollId,
+                             VoteDate = tVote.VoteDate,
+                             VoteId = tVote.VoteId,
+                             VoterUser = tUser.FirstName + " " +tUser.LastName,
+                             VoterUserId = tVote.VoterUserId
+                         });
+
+            return query.AsQueryable().ToDataSourceResult(request.Take, request.Skip, request.Sort, request.Filter);
         }
 
-        public HttpResponseMessage Delete(Vote vote)
+        public HttpResponseMessage Delete(VoteModel vote)
         {
             if (ModelState.IsValid && vote.VoteId > 0)
             {
-                pollRepository.Delete(vote.VoteId);
+                voteRepository.Delete(vote.VoteId);
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             else

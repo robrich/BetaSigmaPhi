@@ -50,20 +50,97 @@ namespace BetaSigmaPhi.Web.Controllers
         }
 
 
+
         public HttpResponseMessage Delete(Category category)
         {
-            if (ModelState.IsValid && category.CategoryId > 0)
+
+            if (category == null)
             {
-                categoryRepository.Delete(category.CategoryId);
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.NotFound);
             }
-            else
+
+            try
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
+                this.categoryRepository.Delete(category.CategoryId);
             }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, category);
 
         }
 
     }
 
 }
+
+
+        //public DataSourceResult Get(HttpRequestMessage requestMessage)
+        //{
+        //    // The request is in the format GET api/YourController?{take:10,skip:0} and ParseQueryString treats it as a key without value
+        //    DataSourceRequest request = JsonConvert.DeserializeObject<DataSourceRequest>(requestMessage.RequestUri.ParseQueryString().GetKey(0));
+        //    return this.categoryRepository.GetActive().AsQueryable().ToDataSourceResult(request.Take, request.Skip, request.Sort, request.Filter);
+        //}
+
+        //public HttpResponseMessage Post(Category category)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        categoryRepository.Save(category);
+        //        HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, category);
+        //        response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = category.CategoryId }));
+        //        return response;
+        //    }
+        //    else
+        //    {
+        //        return Request.CreateResponse(HttpStatusCode.BadRequest);
+        //    }
+
+        //}
+
+        //public HttpResponseMessage Update(int CategoryId, Category category)
+        //{
+        //    if (ModelState.IsValid && CategoryId == category.CategoryId)
+        //    {
+        //        try
+        //        {
+        //            categoryRepository.Save(category);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            return Request.CreateResponse(HttpStatusCode.NotFound);
+        //        }
+
+        //        return Request.CreateResponse(HttpStatusCode.OK);
+        //    }
+        //    else
+        //    {
+        //        return Request.CreateResponse(HttpStatusCode.BadRequest);
+        //    }
+
+        //}
+
+        //public HttpResponseMessage Delete(int CategoryId)
+        //{
+
+        //    Category category = this.categoryRepository.GetById(CategoryId);
+
+        //    if (category == null)
+        //    {
+        //        return Request.CreateResponse(HttpStatusCode.NotFound);
+        //    }
+
+        //    try
+        //    {
+        //        this.categoryRepository.Delete(CategoryId);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Request.CreateResponse(HttpStatusCode.NotFound);
+        //    }
+
+        //    return Request.CreateResponse(HttpStatusCode.OK, category);
+
+        //}

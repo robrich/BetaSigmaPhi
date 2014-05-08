@@ -11,19 +11,20 @@
 <div id="grid"></div>
 
 @section scripts {
-    
-@Scripts.Render("~/js/kendouijs")
+
+    @Scripts.Render("~/js/kendouijs")
 
 
     <script>
 
-        var serviceUrl = '/api/Category';
+        var serviceUrl = '/api/Category/';
 
         $(function () {
+
             $("#grid").kendoGrid({
                 height: 400,
                 columns: [
-                     { field: "Name", title: "Name", width: 300 },
+                     { field: "Name", title: "Name", width: 25 },
                      { command: ["edit", "destroy"], title: "&nbsp;", width: "35px" }
                 ],
                 pageable: true,
@@ -72,6 +73,7 @@
                             contentType: "application/json",
                             type: "DELETE"
                         },
+
                         parameterMap: function (data, operation) {
                             return JSON.stringify(data);
                         }
@@ -82,3 +84,79 @@
     </script>
 
 }
+
+
+
+@*
+    <script>
+
+    var serviceUrl = '/api/Category';
+
+    $(function () {
+
+        $("#grid").kendoGrid({
+            height: 400,
+            columns: [
+                 { field: "Name", title: "Name", width: 25 },
+                 { command: ["edit", "destroy"], title: "&nbsp;", width: "35px" }
+            ],
+            pageable: true,
+            sortable: true,
+            filterable: true,
+            editable: {
+                mode: "popup",
+                confirmation: true
+            },
+            toolbar: ["create"],
+            dataSource: {
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+                pageSize: 25,
+                schema: {
+                    data: "Data",
+                    total: "Total",
+                    model: {
+                        id: "CategoryId",
+                        fields: {
+                            CategoryId: { editable: false, type: "number" },
+                            Name: { validation: { required: true }, type: "string" }
+                        }
+                    }
+                },
+                batch: false,
+                transport: {
+                    create: {
+                        url: serviceUrl,
+                        contentType: "application/json",
+                        type: "POST"
+                    },
+                    read: {
+                        url: serviceUrl,
+                        contentType: "application/json",
+                        type: "GET"
+                    },
+                    update: {
+                        url: function (category) {
+                            return serviceUrl + "/Update?CategoryId=" + category.CategoryId;
+                        },
+                        contentType: "application/json",
+                        type: "POST"
+                    },
+                    destroy: {
+                        url: function (category) {
+                            return serviceUrl + "/Delete?CategoryId=" + category.CategoryId;
+                        },
+                        contentType: "application/json",
+                        type: "POST"
+                    },
+                    parameterMap: function (data, operation) {
+                        return JSON.stringify(data);
+                    }
+                }
+            }
+        });
+    });
+</script>
+    
+    *@

@@ -11,63 +11,57 @@
 		</div>
 
 		<h2>@ViewBag.Title</h2>
+		
+		<div class="col-sm-6">
+			@using (Html.BeginForm()) {
+			    @Html.ValidationSummary(true)
 
-		@using (Html.BeginForm()) {
-			@Html.ValidationSummary(true)
+			    <div class="form-group">
+			        @Html.LabelFor(model => model.Email)
+			        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+			        @Html.ValidationMessageFor(model => model.Email)
+			    </div>
 
-			<div class="editor-label">
-				@Html.LabelFor(model => model.Email)
-			</div>
-			<div class="editor-field">
-				@Html.EditorFor(model => model.Email)
-				@Html.ValidationMessageFor(model => model.Email)
-			</div>
+			    <div class="form-group">
+			        @Html.LabelFor(model => model.FirstName)
+			        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+			        @Html.ValidationMessageFor(model => model.FirstName)
+			    </div>
 
-			<div class="editor-label">
-				@Html.LabelFor(model => model.FirstName)
-			</div>
-			<div class="editor-field">
-				@Html.EditorFor(model => model.FirstName)
-				@Html.ValidationMessageFor(model => model.FirstName)
-			</div>
+			    <div class="form-group">
+			        @Html.LabelFor(model => model.LastName)
+			        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+			        @Html.ValidationMessageFor(model => model.LastName)
+			    </div>
 
-			<div class="editor-label">
-				@Html.LabelFor(model => model.LastName)
-			</div>
-			<div class="editor-field">
-				@Html.EditorFor(model => model.LastName)
-				@Html.ValidationMessageFor(model => model.LastName)
-			</div>
+			    <div class="form-group">
+			        @Html.LabelFor(model => model.Password)
+			        @Html.TextBoxFor(model => model.Password, new {@class = "form-control"})
+			        @Html.ValidationMessageFor(model => model.Password)
+			    </div>
 
-			<div class="editor-label">
-				@Html.LabelFor(model => model.Password)
-			</div>
-			<div class="editor-field">
-				@Html.EditorFor(model => model.Password)
-				@Html.ValidationMessageFor(model => model.Password)
-			</div>
-			
-			<div class="editor-field">
-				<input type="checkbox" id="IsElectable" name="IsElectable" value="true" checked="@Model.IsElectable" />
-				@Html.LabelFor(model => model.IsElectable)
-				@Html.ValidationMessageFor(model => model.IsElectable)
-			</div>
+			    <div class="checkbox">
+			        <input type="checkbox" id="IsElectable" name="IsElectable" value="true" checked="@Model.IsElectable" />
+			        @Html.LabelFor(model => model.IsElectable)
+			        @Html.ValidationMessageFor(model => model.IsElectable)
+			    </div>
 
-			<div class="editor-field">
-				<input type="checkbox" id="IsAdmin" name="IsAdmin" value="true" checked="@Model.IsAdmin" />
-				@Html.LabelFor(model => model.IsAdmin)
-				@Html.ValidationMessageFor(model => model.IsAdmin)
-			</div>
+			    <div class="checkbox">
+			        <input type="checkbox" id="IsAdmin" name="IsAdmin" value="true" checked="@Model.IsAdmin" />
+			        @Html.LabelFor(model => model.IsAdmin)
+			        @Html.ValidationMessageFor(model => model.IsAdmin)
+			    </div>
 
-			<div class="editor-field">
-				<input type="checkbox" id="IsActive" name="IsActive" value="true" checked="@Model.IsActive" />
-				@Html.LabelFor(model => model.IsActive)
-				@Html.ValidationMessageFor(model => model.IsActive)
-			</div>
+			    <div class="checkbox">
+			        <input type="checkbox" id="IsActive" name="IsActive" value="true" checked="@Model.IsActive" />
+			        @Html.LabelFor(model => model.IsActive)
+			        @Html.ValidationMessageFor(model => model.IsActive)
+			    </div>
 
-			<p>
-				<input type="submit" value="Save" />
-			</p>
-		}
+			    <p>
+			        <input type="submit" value="Save" class="btn btn-primary" />
+			    </p>
+			}
+		</div>
 	</div>
 </div>

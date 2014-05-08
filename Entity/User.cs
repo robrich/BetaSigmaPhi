@@ -5,6 +5,7 @@
 	public class User : IEntity {
 		public User() {
 			this.AuthenticationToken = Guid.NewGuid().ToString( "N" );
+			this.IsElectable = true;
 		}
 
 		[Key]

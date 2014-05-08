@@ -1,4 +1,8 @@
-﻿using System;
+﻿//####################################################################################################################################
+// Sql script does not have VoteCountPerFrequency(int) on table need to add this field manually for now
+//####################################################################################################################################
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Infrastructure;

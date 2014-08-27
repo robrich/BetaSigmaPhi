@@ -230,6 +230,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="css\kendoui\Black\editor.png" />
     <Content Include="css\kendoui\Black\imagebrowser.png" />
     <Content Include="css\kendoui\Black\indeterminate.gif" />
@@ -580,6 +581,7 @@
     <Content Include="js\ckeditor_4.3.3_custom\skins\moono\readme.md" />
     <Content Include="js\ckeditor_4.3.3_custom\styles.js" />
     <Content Include="js\init.js" />
+    <Content Include="js\jquery.datetimepicker.js" />
     <Content Include="js\jquery.log.js" />
     <Content Include="css\kendoui\images\kendoui.ttf" />
     <Content Include="css\kendoui\images\kendoui.woff" />
@@ -1017,6 +1019,7 @@
     <Content Include="js\jquery-2.1.0.js" />
     <Content Include="js\jquery-2.1.0.min.js" />
     <Content Include="js\modernizr-2.7.2.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1057,6 +1060,18 @@
     <Content Include="Views\Polls\EditPolls.cshtml" />
     <Content Include="Views\Polls\Votes.cshtml" />
     <None Include="Properties\PublishProfiles\Folder.pubxml" />
+    <Content Include="Views\Polls\AddPoll.cshtml" />
+    <Content Include="Views\Polls\DeletePoll.cshtml" />
+    <Content Include="Views\Polls\EditPoll.cshtml" />
+    <Content Include="Views\Polls\GetAllPolls.cshtml" />
+    <Content Include="Views\Polls\AddCategory.cshtml" />
+    <Content Include="Views\Polls\DeleteCategory.cshtml" />
+    <Content Include="Views\Polls\EditCategory.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Polls\GetCategories.cshtml">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="js\kendoui\cultures\kendo.culture.af-ZA.min.js.map" />
@@ -1509,9 +1524,7 @@
       <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

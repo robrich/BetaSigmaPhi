@@ -171,20 +171,58 @@
 
         [RequireAdmin]
         public ActionResult EditPoll(int PollId)
-        { 
-            return View(); 
+        {
+            List<Category> pollCategories = new List<Category>();
+            pollCategories = categoryRepository.GetActive();
+            ViewBag.Categories = pollCategories;
+
+            Poll currentPoll = this.pollRepository.GetById(PollId);
+            return View(currentPoll); 
         }
 
         [RequireAdmin]
+        [ActionName("EditPoll")]
         [HttpPost]
+        public ActionResult EditPollPost(Poll modifiedPoll)
+        {
+            List<Category> pollCategories = new List<Category>();
+            pollCategories = categoryRepository.GetActive();
+            ViewBag.Categories = pollCategories;
+            int result = this.pollRepository.Save(modifiedPoll);
+            if (result > 0)
+            {
+                ViewBag.Message = "The record is successfully edited.";
+            }
+            else
+            {
+                ViewBag.Message = "An error occured and the record failed to update. Please check the information entered or try again later.";
+            }
+            return View(modifiedPoll);            
+        }
+
+        [RequireAdmin]
         public ActionResult DeletePoll(int PollId)
-        { 
-            return View(); 
+        {
+            try
+            {
+                this.pollRepository.Delete(PollId);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Sorry, an error occurred while deleting the Poll";
+            }
+
+            return RedirectToAction("GetAllPolls"); 
         }
 
         [RequireAdmin]
         public ActionResult AddPoll()
-        { 
+        {
+            List<Category> pollCategories = new List<Category>();
+            pollCategories = categoryRepository.GetActive();
+
+            ViewBag.Categories = pollCategories;
+
             return View(); 
         }
 
@@ -193,12 +231,16 @@
         [ActionName("AddPoll")]
         public ActionResult AddPollPost(Poll myPoll)
         {
+            List<Category> pollCategories = new List<Category>();
+            pollCategories = categoryRepository.GetActive();
+            ViewBag.Categories = pollCategories;
+
             int result = this.pollRepository.Save(myPoll);
             if (result > 0)
             {
                 ViewBag.Message = "The poll was successfully saved.";
             }
-            return View();
+            return View(myPoll);
         }
 
         #endregion Admin Polls
@@ -208,14 +250,14 @@
         [RequireAdmin]
         public ActionResult GetCategories()
         {
-            List<Category> allCategories = this.categoryRepository.GetAll();
+            List<Category> allCategories = this.categoryRepository.GetActive();
             return View(allCategories);
         }
 
         [RequireAdmin]
-        public ActionResult EditCategory(Category category)
+        public ActionResult EditCategory(int CategoryId)
         {
-            Category editItem = category;
+            Category editItem = this.categoryRepository.GetById(CategoryId);
             return View(editItem);
         }
 
@@ -228,15 +270,24 @@
             if (result > 0)
             {
                 ViewBag.Message = "The record is successfully edited.";
+                return RedirectToAction("GetCategories");
             }
             return View();
         }
 
         [RequireAdmin]
-        [HttpPost]
         public ActionResult DeleteCategory(int CategoryId)
         {
-            return View();
+            try
+            {
+                this.categoryRepository.Delete(CategoryId);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Sorry, an error occurred while deleting the category.";
+            }
+
+            return RedirectToAction("GetCategories");
         }
 
         [RequireAdmin]
@@ -253,7 +304,8 @@
             int categoryId = this.categoryRepository.Save(new Category { Name = model.Name});
             if (categoryId > 0)
             { 
-                ViewBag.Message = "The category was successfully created."; 
+                ViewBag.Message = "The category was successfully created.";
+                return RedirectToAction("GetCategories");
             }
             return View();
         }
@@ -265,12 +317,28 @@
         [RequireAdmin]
         public ActionResult GetAllVotes(int PollId)
         {
+            List<Vote> votes = this.voteRepository.GetAll();
             return View();
         }
 
         [RequireAdmin]
         public ActionResult GetWinnerForPoll(int PollId)
         {
+            return View();
+        }
+
+        [RequireAdmin]
+        public ActionResult DeleteVote(int PollId)
+        {
+            try
+            {
+                this.voteRepository.Delete(PollId);
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = "Sorry, an error occured. " + e.ToString();
+            }
+
             return View();
         }
 

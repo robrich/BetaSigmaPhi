@@ -1,5 +1,93 @@
-﻿@{
-    ViewBag.Title = "EditPoll";
+﻿@model Poll
+
+@{
+    ViewBag.Title = "Edit poll.";
 }
 
-<h2>EditPoll</h2>
+<div class="container">
+    <div class="row">
+        <h2>@ViewBag.Title</h2>
+
+        <div class="col-md-8">
+
+            @using (Html.BeginForm("EditPoll", "Polls", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                <div class="form-group">
+                    <div class="col-md-4">@Html.LabelFor(m => m.Frequency, new { @class = "col-md-2 control-label" })</div>
+                    <div class="col-md-8">
+                        <span>@Html.RadioButtonFor(m => m.Frequency, Frequency.Anually)  @Frequency.Anually.ToString()</span>
+                        <span>@Html.RadioButtonFor(m => m.Frequency, Frequency.SemiAnually)  @Frequency.SemiAnually.ToString()</span>
+                        <span>@Html.RadioButtonFor(m => m.Frequency, Frequency.Quarterly)  @Frequency.Quarterly.ToString()</span>
+                        <span>@Html.RadioButtonFor(m => m.Frequency, Frequency.Monthly)  @Frequency.Monthly.ToString()</span>
+                        <span>@Html.RadioButtonFor(m => m.Frequency, Frequency.Weekly)  @Frequency.Weekly.ToString()</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">@Html.LabelFor(m => m.VoteCountPerFrequency, new { @class = "col-md-2 control-label" })</div>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.VoteCountPerFrequency, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.LabelFor(m => m.CategoryId, new { @class = "col-md-2 control-label" })
+                    </div>
+                    <div class="col-md-8">
+                        <select name="CategoryId" id="CategoryId" style="margin-top:10px;">
+                            <option disabled="disabled" selected="selected">-- Select your option --</option>
+                            @{
+                                List<Category> pCategories = ViewBag.Categories != null ? (List<Category>)ViewBag.Categories : new List<Category>();
+
+                                if (pCategories != null && pCategories.Count > 0)
+                                {
+                                    foreach (Category c in pCategories)
+                                    {
+                                        if (c.CategoryId == Model.CategoryId)
+                                        {
+                                            <option value="@c.CategoryId" selected="selected">@c.Name</option> 
+                                        }
+                                        else
+                                        { 
+                                            <option value="@c.CategoryId">@c.Name</option>
+                                        }
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.LabelFor(m => m.StartDate, new { @class = "col-md-2 control-label" })
+                    </div>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control date-start-date" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        @Html.LabelFor(m => m.EndDate, new { @class = "col-md-2 control-label" })
+                    </div>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control date-end-date" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8">
+                        <input type="submit" class="btn btn-default" value="Submit" />
+                    </div>
+                </div>
+                <div class="row" style="font-weight:bold; font-size:18px;">
+                    @ViewBag.Message
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".date-start-date").datetimepicker();
+        $(".date-end-date").datetimepicker();
+    });
+</script>

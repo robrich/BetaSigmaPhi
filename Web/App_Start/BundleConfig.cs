@@ -5,8 +5,9 @@
 	public static class BundleConfig {
 
 		public static void RegisterBundles( BundleCollection bundles ) {
-			bundles.Add( new ScriptBundle( "~/js/jquery" ).Include(
-						"~/js/jquery-{version}.js" ) );
+            bundles.Add(new ScriptBundle("~/js/jquery").Include(
+                        "~/js/jquery.datetimepicker.js",
+                        "~/js/jquery-{version}.js"));
 
 			bundles.Add( new ScriptBundle( "~/js/jqueryval" ).Include(
 						"~/js/jquery.unobtrusive*",

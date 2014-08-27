@@ -6,25 +6,34 @@
 
 <div class="container">
     <div class="row">
+        <div class="col-md-10" style="font-weight:bold; margin-top: 30px;text-align:right">
+            @Html.ActionLink("Create a new category", "AddCategory", "Polls")
+        </div>
+    </div>
+    <div class="row">
         <h2>@ViewBag.Title</h2>
 
-        <div class="col-md-6">
-            <table class="table table-striped table-bordered table-condensed">
-                <tr>
-                    <th>Category Id</th>
-                    <th>Category Name</th>
-                    <th></th>
-                    <th></th>
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            <h3>@ViewBag.Error</h3>
+        }
+
+        <div class="col-md-6" style="margin-top:20px;">
+            <table class="table" style="margin-left:10px; border-color:black; border-bottom: 1px solid;">
+                <tr style="border-color:black; border-top: 1px solid; border-bottom: 1px solid;">
+                    <th style="border-color:black;">Category Id</th>
+                    <th style="border-color:black;">Category Name</th>
+                    <th style="border-color:black;" colspan="2">Edit/Delete</th>
                 </tr>
                 @using (Html.BeginForm("GetCategories", "Polls", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                 {
                     foreach (Category cat in Model)
                     {
-                        <tr>
-                            <td>@cat.Id</td>
-                            <td>@cat.Name</td>
-                            <td>@Html.ActionLink("Edit", "EditCategory", "Polls", new { @class = "btn btn-primary btn-large" })</td>
-                            <td>@Html.ActionLink("Delete", "DeleteCategory", "Polls", new { @class = "btn btn-primary btn-large" })</td>
+                        <tr style="border-color:black; border-top: 1px solid; border-bottom: 1px solid;">
+                            <td style="border-color:black;">@cat.Id</td>
+                            <td style="border-color:black;">@cat.Name</td>
+                            <td style="border-color:black;">@Html.ActionLink("Edit", "EditCategory", new { CategoryId = @cat.Id })</td>
+                            <td style="border-color:black;">@Html.ActionLink("Delete", "DeleteCategory", new { CategoryId = @cat.Id })</td>
                         </tr>
                     }
                 }

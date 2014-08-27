@@ -1,5 +1,50 @@
-﻿@{
-    ViewBag.Title = "GetAllPolls";
+﻿@model  List<Poll>
+
+@{
+    ViewBag.Title = "Get All Polls";
 }
 
-<h2>GetAllPolls</h2>
+<div class="row" style="padding: 30px 200px 30px 200px;">
+
+    <div class="row" style="text-align:right; font-weight:bold;">
+        @Html.ActionLink("Create a new Poll", "AddPoll", "Polls")
+    </div>
+    <h2>Available Polls</h2>
+
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <h3>@ViewBag.Error</h3>
+    }
+</div>
+
+<div class="row" style="padding: 30px 200px 30px 200px;">
+
+    <div class="row" style="padding: 5px 0 5px 0; border-bottom: 1px solid #808080; text-align:center; font-weight:bold;">
+        <span class="col-md-1">Poll Id</span>
+        <span class="col-md-2">Category Id</span>
+        <span class="col-md-1">Start Date</span>
+        <span class="col-md-1">End Date</span>
+        <span class="col-md-2">Frequency</span>
+        <span class="col-md-1">Vote Frequency</span>
+        <span class="col-md-1">Active?</span>
+        <span class="col-md-1">Voting Open?</span>
+        <span class="col-md-1"></span>
+        <span class="col-md-1"></span>
+    </div>
+
+    @foreach (Poll p in Model)
+    {
+        <div class="row" style="padding: 5px 0 5px 0; border-bottom: 1px solid #808080; text-align:center;">
+            <span class="col-md-1">@p.PollId</span>
+            <span class="col-md-2">@p.CategoryId</span>
+            <span class="col-md-1">@p.StartDate.ToString("dd-MMM-yyyy")</span>
+            <span class="col-md-1">@p.EndDate.ToString("dd-MMM-yyyy")</span>
+            <span class="col-md-2">@p.Frequency.ToString()</span>
+            <span class="col-md-1">@p.VoteCountPerFrequency</span>
+            <span class="col-md-1">@(p.IsActive ? "Y" : "N")</span>
+            <span class="col-md-1">@(p.IsOpenForVoting ? "Y" : "N")</span>
+            <span class="col-md-1">@Html.ActionLink("Edit", "EditPoll", new { PollId = p.PollId })</span>
+            <span class="col-md-1">@Html.ActionLink("Delete", "DeletePoll", new { PollId = p.PollId })</span>
+        </div>
+    }
+</div>

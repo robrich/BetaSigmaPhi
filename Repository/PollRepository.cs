@@ -30,7 +30,7 @@
                         && v.IsActive
                         group v by v.ElectedUserId into g
                         orderby g.Count() descending
-                        select g.First().ElectedUser
+                        select g.FirstOrDefault().ElectedUser
                     ).FirstOrDefault();
                 }
 

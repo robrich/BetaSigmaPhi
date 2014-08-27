@@ -20,6 +20,7 @@
                             <div class="col-md-7">
                                 @Html.Hidden("selectedPollId", p.userPoll.PollId)
                                 <select name="electedUserId" id="electedUser" style="margin-top:10px;">
+                                    <option disabled="disabled" selected="selected">-- Select your option --</option>
                                     @if (p.EligibleUsers != null && p.EligibleUsers.Count > 0)
                                     {
                                         foreach (User u in p.EligibleUsers)

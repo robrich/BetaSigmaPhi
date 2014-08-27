@@ -1,5 +1,14 @@
 ﻿@{
-    ViewBag.Title = "DeletePoll";
+    ViewBag.Title = "Delete Poll";
 }
 
-<h2>DeletePoll</h2>
+<h2>Delete Poll</h2>
+
+@if(!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <h3>@ViewBag.Error</h3>
+}
+else
+{
+    <h3>The poll has been successfully deleted.</h3> 
+}
